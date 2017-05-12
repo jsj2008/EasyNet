@@ -15,6 +15,19 @@
 		D54A93601EC560B00002874A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54A935E1EC560B00002874A /* LaunchScreen.storyboard */; };
 		D54A936B1EC560B00002874A /* ImagesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A936A1EC560B00002874A /* ImagesTests.m */; };
 		D54A93761EC560B00002874A /* ImagesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93751EC560B00002874A /* ImagesUITests.m */; };
+		D54A93861EC5618E0002874A /* UIImageView+EasyImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93851EC5618E0002874A /* UIImageView+EasyImage.m */; };
+		D54A939A1EC579280002874A /* UIImage+EasyImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93991EC579280002874A /* UIImage+EasyImage.m */; };
+		D54A93A01EC5814B0002874A /* UIImage+Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A939F1EC5814B0002874A /* UIImage+Transform.m */; };
+		D54A93A21EC586BB0002874A /* stream_loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = D54A93A11EC586BB0002874A /* stream_loading.gif */; };
+		D54A93A51EC58F2F0002874A /* EasyImageParas.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93A41EC58F2F0002874A /* EasyImageParas.m */; };
+		D54A93AD1EC59A5A0002874A /* EasyTinyFileDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93AC1EC59A5A0002874A /* EasyTinyFileDownload.m */; };
+		D54A93B01EC59A650002874A /* EasyBigFileDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93AF1EC59A650002874A /* EasyBigFileDownload.m */; };
+		D54A93B31EC59BD10002874A /* EasyCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93B21EC59BD10002874A /* EasyCacheManager.m */; };
+		D54A93B91EC5AD670002874A /* EasyNonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93B81EC5AD670002874A /* EasyNonCache.m */; };
+		D54A93BC1EC5B0810002874A /* EasyBothCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93BB1EC5B0810002874A /* EasyBothCache.m */; };
+		D54A93BF1EC5D0400002874A /* NSObject+Dispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93BE1EC5D0400002874A /* NSObject+Dispatch.m */; };
+		D54A93C41EC5E5BD0002874A /* EasyDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93C11EC5E5BD0002874A /* EasyDiskCache.m */; };
+		D54A93C51EC5E5BD0002874A /* EasyMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93C31EC5E5BD0002874A /* EasyMemoryCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +64,34 @@
 		D54A93711EC560B00002874A /* ImagesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImagesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54A93751EC560B00002874A /* ImagesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagesUITests.m; sourceTree = "<group>"; };
 		D54A93771EC560B00002874A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D54A93841EC5618E0002874A /* UIImageView+EasyImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+EasyImage.h"; sourceTree = "<group>"; };
+		D54A93851EC5618E0002874A /* UIImageView+EasyImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+EasyImage.m"; sourceTree = "<group>"; };
+		D54A93871EC561FC0002874A /* EasyImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyImage.h; sourceTree = "<group>"; };
+		D54A93931EC568060002874A /* EasyCacheProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyCacheProtocol.h; sourceTree = "<group>"; };
+		D54A93981EC579280002874A /* UIImage+EasyImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EasyImage.h"; sourceTree = "<group>"; };
+		D54A93991EC579280002874A /* UIImage+EasyImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+EasyImage.m"; sourceTree = "<group>"; };
+		D54A939E1EC5814B0002874A /* UIImage+Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Transform.h"; sourceTree = "<group>"; };
+		D54A939F1EC5814B0002874A /* UIImage+Transform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Transform.m"; sourceTree = "<group>"; };
+		D54A93A11EC586BB0002874A /* stream_loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = stream_loading.gif; path = ../../../stream_loading.gif; sourceTree = "<group>"; };
+		D54A93A31EC58F2F0002874A /* EasyImageParas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyImageParas.h; sourceTree = "<group>"; };
+		D54A93A41EC58F2F0002874A /* EasyImageParas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyImageParas.m; sourceTree = "<group>"; };
+		D54A93AA1EC599C10002874A /* EasyDownloadProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyDownloadProtocol.h; sourceTree = "<group>"; };
+		D54A93AB1EC59A5A0002874A /* EasyTinyFileDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyTinyFileDownload.h; sourceTree = "<group>"; };
+		D54A93AC1EC59A5A0002874A /* EasyTinyFileDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyTinyFileDownload.m; sourceTree = "<group>"; };
+		D54A93AE1EC59A650002874A /* EasyBigFileDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyBigFileDownload.h; sourceTree = "<group>"; };
+		D54A93AF1EC59A650002874A /* EasyBigFileDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyBigFileDownload.m; sourceTree = "<group>"; };
+		D54A93B11EC59BD10002874A /* EasyCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyCacheManager.h; sourceTree = "<group>"; };
+		D54A93B21EC59BD10002874A /* EasyCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyCacheManager.m; sourceTree = "<group>"; };
+		D54A93B71EC5AD670002874A /* EasyNonCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyNonCache.h; sourceTree = "<group>"; };
+		D54A93B81EC5AD670002874A /* EasyNonCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyNonCache.m; sourceTree = "<group>"; };
+		D54A93BA1EC5B0810002874A /* EasyBothCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyBothCache.h; sourceTree = "<group>"; };
+		D54A93BB1EC5B0810002874A /* EasyBothCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyBothCache.m; sourceTree = "<group>"; };
+		D54A93BD1EC5D0400002874A /* NSObject+Dispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Dispatch.h"; path = "../../../cloudphone_ios/yunpai/yunpai/Steam/Additions/NSObject+Dispatch.h"; sourceTree = "<group>"; };
+		D54A93BE1EC5D0400002874A /* NSObject+Dispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Dispatch.m"; path = "../../../cloudphone_ios/yunpai/yunpai/Steam/Additions/NSObject+Dispatch.m"; sourceTree = "<group>"; };
+		D54A93C01EC5E5BD0002874A /* EasyDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyDiskCache.h; sourceTree = "<group>"; };
+		D54A93C11EC5E5BD0002874A /* EasyDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyDiskCache.m; sourceTree = "<group>"; };
+		D54A93C21EC5E5BD0002874A /* EasyMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyMemoryCache.h; sourceTree = "<group>"; };
+		D54A93C31EC5E5BD0002874A /* EasyMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyMemoryCache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +145,7 @@
 				D54A93831EC560E00002874A /* EasyImage */,
 				D54A93531EC560B00002874A /* AppDelegate.h */,
 				D54A93541EC560B00002874A /* AppDelegate.m */,
+				D54A93A11EC586BB0002874A /* stream_loading.gif */,
 				D54A93561EC560B00002874A /* ViewController.h */,
 				D54A93571EC560B00002874A /* ViewController.m */,
 				D54A93591EC560B00002874A /* Main.storyboard */,
@@ -144,9 +186,92 @@
 		D54A93831EC560E00002874A /* EasyImage */ = {
 			isa = PBXGroup;
 			children = (
+				D54A93971EC579080002874A /* Additions */,
+				D54A938A1EC562AB0002874A /* Cache */,
+				D54A938B1EC562AB0002874A /* GCDQueue */,
+				D54A93881EC562570002874A /* Download */,
+				D54A93891EC562570002874A /* Upload */,
+				D54A93841EC5618E0002874A /* UIImageView+EasyImage.h */,
+				D54A93851EC5618E0002874A /* UIImageView+EasyImage.m */,
+				D54A93871EC561FC0002874A /* EasyImage.h */,
+				D54A93A31EC58F2F0002874A /* EasyImageParas.h */,
+				D54A93A41EC58F2F0002874A /* EasyImageParas.m */,
+				D54A93B11EC59BD10002874A /* EasyCacheManager.h */,
+				D54A93B21EC59BD10002874A /* EasyCacheManager.m */,
 			);
 			name = EasyImage;
 			path = ../../EasyImage;
+			sourceTree = "<group>";
+		};
+		D54A93881EC562570002874A /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				D54A93AA1EC599C10002874A /* EasyDownloadProtocol.h */,
+				D54A93AB1EC59A5A0002874A /* EasyTinyFileDownload.h */,
+				D54A93AC1EC59A5A0002874A /* EasyTinyFileDownload.m */,
+				D54A93AE1EC59A650002874A /* EasyBigFileDownload.h */,
+				D54A93AF1EC59A650002874A /* EasyBigFileDownload.m */,
+			);
+			path = Download;
+			sourceTree = "<group>";
+		};
+		D54A93891EC562570002874A /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Upload;
+			sourceTree = "<group>";
+		};
+		D54A938A1EC562AB0002874A /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				D54A93C01EC5E5BD0002874A /* EasyDiskCache.h */,
+				D54A93C11EC5E5BD0002874A /* EasyDiskCache.m */,
+				D54A93C21EC5E5BD0002874A /* EasyMemoryCache.h */,
+				D54A93C31EC5E5BD0002874A /* EasyMemoryCache.m */,
+				D54A93BA1EC5B0810002874A /* EasyBothCache.h */,
+				D54A93BB1EC5B0810002874A /* EasyBothCache.m */,
+				D54A93B71EC5AD670002874A /* EasyNonCache.h */,
+				D54A93B81EC5AD670002874A /* EasyNonCache.m */,
+				D54A938C1EC565960002874A /* Disk */,
+				D54A938D1EC565960002874A /* Memory */,
+				D54A93931EC568060002874A /* EasyCacheProtocol.h */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		D54A938B1EC562AB0002874A /* GCDQueue */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GCDQueue;
+			sourceTree = "<group>";
+		};
+		D54A938C1EC565960002874A /* Disk */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Disk;
+			sourceTree = "<group>";
+		};
+		D54A938D1EC565960002874A /* Memory */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Memory;
+			sourceTree = "<group>";
+		};
+		D54A93971EC579080002874A /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				D54A93981EC579280002874A /* UIImage+EasyImage.h */,
+				D54A93991EC579280002874A /* UIImage+EasyImage.m */,
+				D54A939E1EC5814B0002874A /* UIImage+Transform.h */,
+				D54A939F1EC5814B0002874A /* UIImage+Transform.m */,
+				D54A93BD1EC5D0400002874A /* NSObject+Dispatch.h */,
+				D54A93BE1EC5D0400002874A /* NSObject+Dispatch.m */,
+			);
+			path = Additions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +383,7 @@
 				D54A93601EC560B00002874A /* LaunchScreen.storyboard in Resources */,
 				D54A935D1EC560B00002874A /* Assets.xcassets in Resources */,
 				D54A935B1EC560B00002874A /* Main.storyboard in Resources */,
+				D54A93A21EC586BB0002874A /* stream_loading.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,8 +409,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				D54A93581EC560B00002874A /* ViewController.m in Sources */,
+				D54A93AD1EC59A5A0002874A /* EasyTinyFileDownload.m in Sources */,
+				D54A93B91EC5AD670002874A /* EasyNonCache.m in Sources */,
+				D54A93B31EC59BD10002874A /* EasyCacheManager.m in Sources */,
+				D54A93A51EC58F2F0002874A /* EasyImageParas.m in Sources */,
 				D54A93551EC560B00002874A /* AppDelegate.m in Sources */,
+				D54A93861EC5618E0002874A /* UIImageView+EasyImage.m in Sources */,
+				D54A93C51EC5E5BD0002874A /* EasyMemoryCache.m in Sources */,
 				D54A93521EC560B00002874A /* main.m in Sources */,
+				D54A939A1EC579280002874A /* UIImage+EasyImage.m in Sources */,
+				D54A93C41EC5E5BD0002874A /* EasyDiskCache.m in Sources */,
+				D54A93B01EC59A650002874A /* EasyBigFileDownload.m in Sources */,
+				D54A93A01EC5814B0002874A /* UIImage+Transform.m in Sources */,
+				D54A93BC1EC5B0810002874A /* EasyBothCache.m in Sources */,
+				D54A93BF1EC5D0400002874A /* NSObject+Dispatch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+#import "EasyImageParas.h"
+
 
 @interface UIImageView(EasyImage)
 
+-(void) easyImageWithPara:(EasyImageParas *) paras;//you should call it in main thread
+-(void) easyImageCancel;//you should call it in main thread
+
+- (void) easyGifInMainbundleForName:(NSString *) name;
+- (void) easyPngInMainbundleForName:(NSString *) name;
 
 @end
 

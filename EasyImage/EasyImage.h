@@ -9,7 +9,9 @@
 #ifndef EasyImage_h
 #define EasyImage_h
 
+#import "EasyCacheManager.h"
 #import "UIImageView+EasyImage.h"
+#import "EasyImageParas.h"
 
 #endif /* EasyImage_h */
 

@@ -31,6 +31,7 @@
 		D54A93D31EC6B2380002874A /* EasyImageParas.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93D21EC6B2380002874A /* EasyImageParas.m */; };
 		D54A93DD1EC6FB470002874A /* EasySerialQueueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93DC1EC6FB470002874A /* EasySerialQueueManager.m */; };
 		D54A93E01EC724310002874A /* UIImage+Header.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93DF1EC724310002874A /* UIImage+Header.m */; };
+		D54A93E31EC730360002874A /* EasyProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93E21EC730360002874A /* EasyProgress.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,8 @@
 		D54A93DC1EC6FB470002874A /* EasySerialQueueManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasySerialQueueManager.m; sourceTree = "<group>"; };
 		D54A93DE1EC724310002874A /* UIImage+Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Header.h"; sourceTree = "<group>"; };
 		D54A93DF1EC724310002874A /* UIImage+Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Header.m"; sourceTree = "<group>"; };
+		D54A93E11EC730360002874A /* EasyProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyProgress.h; sourceTree = "<group>"; };
+		D54A93E21EC730360002874A /* EasyProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyProgress.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +226,8 @@
 				D54A93AC1EC59A5A0002874A /* EasyTinyFileDownload.m */,
 				D54A93AE1EC59A650002874A /* EasyBigFileDownload.h */,
 				D54A93AF1EC59A650002874A /* EasyBigFileDownload.m */,
+				D54A93E11EC730360002874A /* EasyProgress.h */,
+				D54A93E21EC730360002874A /* EasyProgress.m */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -433,6 +438,7 @@
 			files = (
 				D54A93E01EC724310002874A /* UIImage+Header.m in Sources */,
 				D54A93581EC560B00002874A /* ViewController.m in Sources */,
+				D54A93E31EC730360002874A /* EasyProgress.m in Sources */,
 				D54A93AD1EC59A5A0002874A /* EasyTinyFileDownload.m in Sources */,
 				D54A93CF1EC6A7130002874A /* EasyConQueueManager.m in Sources */,
 				D54A93B91EC5AD670002874A /* EasyNonCache.m in Sources */,

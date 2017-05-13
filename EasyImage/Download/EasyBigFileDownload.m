@@ -14,6 +14,8 @@
 #import "EasyQueueProtocol.h"
 #import "EasyImageParaProtocol.h"
 
+#import "EasyProgress.h"
+
 //NSURLSessionDelegate
 //NSURLSessionTaskDelegate
 //NSURLSessionDataDelegate  && NSURLSessionDownloadDelegate
@@ -26,6 +28,7 @@
                         NSMutableData * _mutData;
                         dispatch_semaphore_t  _semaphore;
                         
+                        EasyProgress * _progress;
 }
 
 @property (nonatomic, strong) id<EasyImageParaProtocol> currentPara;
@@ -42,6 +45,7 @@
 -(instancetype) init{
     if (self = [super init]) {
         _semaphore = dispatch_semaphore_create(1);
+        _progress = [EasyProgress new];
     }
     return self;
 }
@@ -88,6 +92,12 @@
     [_queue dispatchBlock:downloadBlock onQueue:EasyBigFileDownload_Queue];
 }
 
+-(void) easyCancelDownload:(id<EasyParaObjectProtocol>) para{
+    id<EasyImageParaProtocol> paras = (id<EasyImageParaProtocol>) para;
+    if (paras.recycleBlock) {
+        paras.recycleBlock(paras);
+    }
+}
 
 -(void) loadingFinishedWithEerror:(NSError *) error{
     
@@ -116,12 +126,13 @@
     
 }
 
--(void) easyCancelDownload:(id<EasyParaObjectProtocol>) para{
-    id<EasyImageParaProtocol> paras = (id<EasyImageParaProtocol>) para;
-    if (paras.recycleBlock) {
-        paras.recycleBlock(paras);
+-(void) dataDidRerceived{
+    _progress.currentNumberOfBytes = _mutData.length;
+    if (_progress.currentNumberOfBytes > 256 &&  _progress.currentNumberOfBytes > _progress.totalNumberOfBytes) {
+        [_progress headData:_mutData withType:self.currentPara.url];
     }
 }
+
 
 /*********************************************************
  NSURLSessionDelegate
@@ -284,11 +295,13 @@ didBecomeStreamTask:(NSURLSessionStreamTask *)streamTask{
  */
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
     didReceiveData:(NSData *)data{
+    
     if (_mutData == nil) {
         _mutData = [NSMutableData new];
     }
     [_mutData appendData:data];
     
+    [self dataDidRerceived];
     
     EasyLog([NSNumber numberWithInt:_mutData.length]);
 }
@@ -324,7 +337,6 @@ didBecomeStreamTask:(NSURLSessionStreamTask *)streamTask{
 didFinishDownloadingToURL:(NSURL *)location{
     EasyLog("--------------------");
 }
-
 
 
 /* Sent periodically to notify the delegate of download progress. */

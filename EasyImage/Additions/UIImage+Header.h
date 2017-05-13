@@ -14,8 +14,8 @@
 +(CGSize) imageSizeWithType:(NSString *) type andData:(NSData *) data;
 
 
-+(CGSize) imageSizeOfPng:(NSData *) data ;
-+(CGSize) imageSizeOfJpg:(NSData *) data ;
++(CGSize) imageSizeOfPNG:(NSData *) data ;
++(CGSize) imageSizeOfJPG:(NSData *) data ;
 
 
 @end

@@ -47,7 +47,7 @@ static inline BOOL currentQueue(NSString * key){
 
 -(BOOL) dispatchBlock:(dispatch_block_t) block onQueue:(NSString *) key{
     @synchronized (self) {
-        NSLog(@"on  error  con");
+
         BOOL cqueue = currentQueue(key);
         if (key == nil) {
             key = QueueCon_Default;

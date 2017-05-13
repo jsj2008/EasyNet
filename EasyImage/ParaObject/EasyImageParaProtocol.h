@@ -9,14 +9,13 @@
 #ifndef EasyImageParaProtocol_h
 #define EasyImageParaProtocol_h
 
-
-@protocol EasyParaObjectProtocol;
-
+#import "EasyParaObjectProtocol.h"
 
 @protocol EasyImageParaProtocol <NSObject, EasyParaObjectProtocol>
 
 @property (atomic, assign) BOOL hasCanceled;
-@property (nonatomic, copy) void (^ cancelBlock) ();
+@property (nonatomic, weak) UIImageView * owner;
+
 
 @end
 

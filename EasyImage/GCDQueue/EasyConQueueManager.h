@@ -9,16 +9,12 @@
 #import <Foundation/Foundation.h>
 
 
-@interface EasyConQueueManager : NSObject
+#import "EasyQueueProtocol.h"
+
+@interface EasyConQueueManager : NSObject<EasyQueueProtocol>
 
 +(nullable instancetype) shareEasyConQueueManager;
 
--(BOOL) dispatchBlock:(nonnull dispatch_block_t) block onQueue:(nullable NSString *) key;
--(BOOL) dispatchBarrierBlock:(nonnull dispatch_block_t) block onQueue:(nullable NSString *) key;
-
--(void) removeBlock:(nonnull dispatch_block_t) block;
--(void) removeQueue:(nullable NSString *) key;
--(void) clearQueue;
 
 @end
 

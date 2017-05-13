@@ -12,12 +12,15 @@
 
 @protocol EasyQueueProtocol <NSObject>
 
--(BOOL) dispatchBlock:(dispatch_block_t) block onQueue:(NSString *) key;
--(void) removeBlock:(dispatch_block_t) block;
+-(BOOL) dispatchBlock:(nonnull dispatch_block_t) block onQueue:(nullable NSString *) key;
+
+//-(void) removeBlock:(nonnull dispatch_block_t) block onQueue:(nullable NSString *) key;
+-(void) removeQueue:(nullable NSString *) key;
+-(void) clearQueue;
 
 @optional
--(BOOL) dispatchBarrierBlock:(dispatch_block_t) block onQueue:(NSString *) key;
--(void) setMaxQueueSize:(NSInteger) size;
+-(BOOL) dispatchBarrierBlock:(nonnull dispatch_block_t) block onQueue:(nullable NSString *) key;
+
 
 @end
 

@@ -13,13 +13,18 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "EasyQueueProtocol.h"
 
 @protocol EasyParaObjectProtocol;
+
+
 
 @protocol EasyDownloadProtocol <NSObject>
 
 - (void) easyDownload:(id<EasyParaObjectProtocol>) paras;
 -(void) easyCancelDownload:(id<EasyParaObjectProtocol>) paras;
+
+@property (nonatomic, weak) id<EasyQueueProtocol> queue;
 
 @end
 

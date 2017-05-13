@@ -22,14 +22,13 @@
 @synthesize cacher = _cacher;
 
 @synthesize url = _url;
-@synthesize imageView = _imageView;
+@synthesize owner = _owner;
 @synthesize defaultImage = _defaultImage;
 
 @synthesize failedBlock = _failedBlock;
 @synthesize successBlock = _successBlock;
 @synthesize recycleBlock = _recycleBlock;
 
-@synthesize cancelBlock = _cancelBlock;
 
 -(instancetype) init{
     if (self = [super init]) {
@@ -51,7 +50,6 @@
     _successBlock = nil;
     _recycleBlock = nil;
     
-    _cancelBlock = nil;
 }
 
 -(void) setRecycleBlock:(void (^)(id<EasyParaObjectProtocol>))recycleBlock{

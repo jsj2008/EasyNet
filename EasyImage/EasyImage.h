@@ -9,6 +9,10 @@
 #ifndef EasyImage_h
 #define EasyImage_h
 
+/*
+ support for ios8.0 or higher
+ */
+
 #import "EasyCacheManager.h"
 #import "UIImageView+EasyImage.h"
 #import "EasyParaObjectProtocol.h"

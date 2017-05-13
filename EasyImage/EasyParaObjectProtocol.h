@@ -18,7 +18,7 @@
 
 @protocol EasyParaObjectProtocol <NSObject>
 
-@property (nonatomic, weak) UIImageView * imageView;
+@property (nonatomic, weak) id owner;
 @property (nonatomic, copy) NSString * url;
 @property (nonatomic, strong) UIImage * defaultImage;
 

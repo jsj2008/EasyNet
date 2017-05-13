@@ -98,6 +98,7 @@
 		D54A93D21EC6B2380002874A /* EasyImageParas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyImageParas.m; sourceTree = "<group>"; };
 		D54A93D41EC6B2790002874A /* EasyParaObjectProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyParaObjectProtocol.h; sourceTree = "<group>"; };
 		D54A93D51EC6B4050002874A /* EasyImageParaProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyImageParaProtocol.h; sourceTree = "<group>"; };
+		D54A93DA1EC6F6640002874A /* EasyLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyLog.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +272,7 @@
 				D54A939F1EC5814B0002874A /* UIImage+Transform.m */,
 				D54A93BD1EC5D0400002874A /* NSObject+Dispatch.h */,
 				D54A93BE1EC5D0400002874A /* NSObject+Dispatch.m */,
+				D54A93DA1EC6F6640002874A /* EasyLog.h */,
 			);
 			path = Additions;
 			sourceTree = "<group>";

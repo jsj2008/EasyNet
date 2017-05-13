@@ -8,27 +8,27 @@
 
 #import "UIImageView+EasyImage.h"
 
-#import "UIImage+EasyImage.h"
 #import <objc/runtime.h>
 
-#import "EasyCacheManager.h"
-
+#import "UIImage+EasyImage.h"
 #import "NSObject+Dispatch.h"
 
+#import "EasyCacheManager.h"
 #import "EasyDownloadProtocol.h"
+#import "EasyImageParaProtocol.h"
+#import "EasyParaObjectProtocol.h"
 
-#import "EasyConQueueManager.h"
+#define EasyImage_URL @"EasyImage_URL"
 
 @implementation UIImageView(EasyImage)
-
 
 -(void) easyImageWithPara:(id<EasyParaObjectProtocol>) para{
     __weak typeof(self) wself = self;
     
     @synchronized (wself) {
         [wself easyImageCancel];
-        para.imageView = wself;
-        objc_setAssociatedObject(wself, @"EasyImage_URL", para, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        para.owner = wself;
+        objc_setAssociatedObject(wself, EasyImage_URL, para, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [para.downloader easyDownload:para];
     }
 }
@@ -36,15 +36,12 @@
 -(void) easyImageCancel{
     __weak typeof(self) wself = self;
         @synchronized (wself) {
-        id<EasyImageParaProtocol> para = objc_getAssociatedObject(wself, @"EasyImage_URL");
+        id<EasyImageParaProtocol> para = objc_getAssociatedObject(wself, EasyImage_URL);
         if (para) {
             if (para.autoCancel) {
                 [para setHasCanceled:YES];
                 [para.downloader easyCancelDownload:para];
-                objc_setAssociatedObject(wself, @"EasyImage_URL", nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-                if (para.recycleBlock) {
-                    para.recycleBlock(para);
-                }
+                objc_setAssociatedObject(wself, EasyImage_URL, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             }
         }
     }

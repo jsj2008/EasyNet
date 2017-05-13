@@ -8,40 +8,66 @@
 
 #import "EasyTinyFileDownload.h"
 
-#import "EasyImageParas.h"
 
 #import "NSObject+Dispatch.h"
-
-#import "EasyConQueueManager.h"
-
+#import "EasyQueueProtocol.h"
 #import "EasyImageParaProtocol.h"
 
+#import "EasyLog.h"
+
+@interface EasyTinyFileDownload() 
+
+@property (nonatomic, strong) NSURLSession * urlSession;
+
+@end
 
 @implementation EasyTinyFileDownload
 
+@synthesize queue = _queue;
+
+-(NSURLSession *) urlSession{
+    if (_urlSession == nil) {
+        @synchronized (self) {
+            if (!_urlSession) {
+                _urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                            delegate:nil
+                                                       delegateQueue:nil];
+            }
+        }
+    }
+    return _urlSession;
+}
+
 - (void) easyDownload:(id<EasyParaObjectProtocol>) para {
     
+    __weak typeof(self) wself = self;
     id<EasyImageParaProtocol> paras = (id<EasyImageParaProtocol>) para;
     
     dispatch_block_t downloadBlock = ^{
         if (paras.hasCanceled) {
             return ;
         }
-        NSURL * url = [NSURL URLWithString:paras.url];
-        NSURLRequest *request=[NSURLRequest requestWithURL:url];
-        NSURLSession *session =  [NSURLSession sharedSession];
         
-        NSURLSessionDataTask * dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSURL * url = [NSURL URLWithString:paras.url];
+        NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
+        [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
+        
+        NSURLSessionDataTask * dataTask = [wself.urlSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            
+            UIImage * image = [UIImage imageWithData:data];
             
             if (paras.url && !paras.hasCanceled) {
                 if (error) {
+                    EasyLog(error);
                     if (paras.failedBlock) {
                         paras.failedBlock(error);
                     }
                 }else {
-                    UIImage * image = [UIImage imageWithData:data];
                     [data easyDispatchOnMain:^{
-                        paras.imageView.image = image;
+                        paras.owner.image = image;
+                        if (paras.successBlock) {
+                            paras.successBlock();
+                        }
                     }];
                 }
                 if (paras.recycleBlock) {
@@ -51,19 +77,17 @@
         }];
         
         [dataTask resume];
-        
     };
-    paras.cancelBlock = downloadBlock;
     
-    [[EasyConQueueManager shareEasyConQueueManager] dispatchBlock:downloadBlock onQueue:@"sdf"];
+    [_queue dispatchBlock:downloadBlock onQueue:@"sdf"];
 }
 
 
 -(void) easyCancelDownload:(id<EasyParaObjectProtocol>) para{
-    
     id<EasyImageParaProtocol> paras = (id<EasyImageParaProtocol>) para;
-    NSLog(@"cancel in tiny");
-//    [[EasyConQueueManager shareEasyConQueueManager] removeBlock:paras.cancelBlock];
+    if (paras.recycleBlock) {
+        paras.recycleBlock(paras);
+    }
 }
 
 

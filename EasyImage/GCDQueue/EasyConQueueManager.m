@@ -8,6 +8,8 @@
 
 #import "EasyConQueueManager.h"
 
+#define QueueCon_Default @"QueueCon_Default"
+
 static inline BOOL currentQueue(NSString * key){
     if ( dispatch_get_specific([key UTF8String]) ){
         return YES;
@@ -36,10 +38,10 @@ static inline BOOL currentQueue(NSString * key){
     if (self = [super init]) {
         _queueCollection = [NSMutableDictionary dictionary];
         dispatch_queue_t gq =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-        dispatch_queue_t disQue = dispatch_queue_create("QueueCon_Default", DISPATCH_QUEUE_CONCURRENT);
+        dispatch_queue_t disQue = dispatch_queue_create([QueueCon_Default UTF8String], DISPATCH_QUEUE_CONCURRENT);
         dispatch_set_target_queue(disQue, gq);
         
-        [_queueCollection setObject:disQue forKey:@"QueueCon_Default"];
+        [_queueCollection setObject:disQue forKey:QueueCon_Default];
     }
     return self;
 }
@@ -48,25 +50,18 @@ static inline BOOL currentQueue(NSString * key){
     @synchronized (self) {
         BOOL cqueue = currentQueue(key);
         if (key == nil) {
+            key = QueueCon_Default;
+        }
+        dispatch_queue_t queue = [self queueForKey:key];
+        if (queue){
             if (cqueue) {
                 block();
             }else{
-                dispatch_async([_queueCollection objectForKey:@"QueueCon_Default"], ^{
+                dispatch_async(queue, ^{
                     block();
                 });
             }
-        }else {
-            dispatch_queue_t queue = [self queueForKey:key];
-            if (queue){
-                if (cqueue) {
-                    block();
-                }else{
-                    dispatch_async(queue, ^{
-                        block();
-                    });
-                }
-                return YES;
-            }
+            return YES;
         }
         return NO;
     }
@@ -75,25 +70,18 @@ static inline BOOL currentQueue(NSString * key){
     @synchronized (self) {
         BOOL cqueue = currentQueue(key);
         if (key == nil) {
+            key = QueueCon_Default;
+        }
+        dispatch_queue_t queue = [self queueForKey:key];
+        if (queue){
             if (cqueue) {
                 block();
             }else{
-                dispatch_barrier_async([_queueCollection objectForKey:@"QueueCon_Default"], ^{
+                dispatch_barrier_async(queue, ^{
                     block();
                 });
             }
-        }else {
-            dispatch_queue_t queue = [self queueForKey:key];
-            if (queue){
-                if (cqueue) {
-                    block();
-                }else{
-                    dispatch_barrier_async(queue, ^{
-                        block();
-                    });
-                }
-                return YES;
-            }
+            return YES;
         }
         return NO;
     }
@@ -102,11 +90,6 @@ static inline BOOL currentQueue(NSString * key){
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 
--(void) removeBlock:(dispatch_block_t) block {
-    @synchronized (self) {
-        dispatch_block_cancel(block);
-    }
-}
 -(void) removeQueue:(NSString *) key{
     @synchronized (self) {
         if (key) {
@@ -122,7 +105,7 @@ static inline BOOL currentQueue(NSString * key){
 -(const dispatch_queue_t) queueForKey:(NSString *)key{
     @synchronized (self) {
         if (key == nil) {
-            return [_queueCollection objectForKey:@"QueueCon_Default"];
+            return [_queueCollection objectForKey:QueueCon_Default];
         }else{
             dispatch_queue_t queue = [_queueCollection objectForKey:key];
             if (queue == nil) {

@@ -14,12 +14,12 @@
 #import <UIKit/UIKit.h>
 
 
-@class EasyImageParas;
+@protocol EasyParaObjectProtocol;
 
 @protocol EasyDownloadProtocol <NSObject>
 
-- (void) easyDownload:(EasyImageParas *) paras;
--(void) easyCancelDownload:(EasyImageParas *) paras;
+- (void) easyDownload:(id<EasyParaObjectProtocol>) paras;
+-(void) easyCancelDownload:(id<EasyParaObjectProtocol>) paras;
 
 @end
 

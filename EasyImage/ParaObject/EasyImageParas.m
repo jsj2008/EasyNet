@@ -15,6 +15,22 @@
 
 @implementation EasyImageParas
 
+@synthesize autoCancel = _autoCancel;
+@synthesize hasCanceled = _hasCanceled;
+
+@synthesize downloader = _downloader;
+@synthesize cacher = _cacher;
+
+@synthesize url = _url;
+@synthesize imageView = _imageView;
+@synthesize defaultImage = _defaultImage;
+
+@synthesize failedBlock = _failedBlock;
+@synthesize successBlock = _successBlock;
+@synthesize recycleBlock = _recycleBlock;
+
+@synthesize cancelBlock = _cancelBlock;
+
 -(instancetype) init{
     if (self = [super init]) {
         [self reset];
@@ -24,23 +40,21 @@
 
 -(void) reset{
     _autoCancel = NO;
-    _asynLoad = YES;
     _hasCanceled = NO;
     
-    _loading = NO;
-    
     _url = nil;
-    _urlPH = nil;
-    
+    _defaultImage = nil;
     _downloader = nil;
     _cacher = nil;
     
     _failedBlock = nil;
     _successBlock = nil;
     _recycleBlock = nil;
+    
+    _cancelBlock = nil;
 }
 
--(void) setRecycleBlock:(void (^)(EasyImageParas *))recycleBlock{
+-(void) setRecycleBlock:(void (^)(id<EasyParaObjectProtocol>))recycleBlock{
     if (recycleBlock == nil) {
         NSLog(@"---------------");
     }

@@ -99,8 +99,8 @@
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
--(EasyImageParas*) createEasyImageParas{
-    EasyImageParas * para = nil;
+-(id<EasyParaObjectProtocol>) createEasyImageParas{
+    id<EasyParaObjectProtocol> para = nil;
     @synchronized (_easyImageParasCache) {
         para = [_easyImageParasCache lastObject];
         [_easyImageParasCache removeObject:para];
@@ -108,6 +108,7 @@
     if (para == nil) {
         para = [[EasyImageParas alloc] init];
     }
+    NSLog(@"%@", para);
     return para;
 }
 -(void) collectEasyImageParas:(EasyImageParas *) para{

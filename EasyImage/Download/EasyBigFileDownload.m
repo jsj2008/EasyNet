@@ -13,17 +13,10 @@
 @implementation EasyBigFileDownload
 
 
-- (void) easyDownload:(EasyImageParas *) paras{
-    NSLog(@"load in big");
-
-    if (!paras.asynLoad) {
-        NSLog(@"load in big return : para error !");
-
-        return;
-    }
+- (void) easyDownload:(id<EasyParaObjectProtocol>) paras{
     NSLog(@"load in big");
 }
--(void) easyCancelDownload:(EasyImageParas *) paras{
+-(void) easyCancelDownload:(id<EasyParaObjectProtocol>) paras{
     NSLog(@"cancel in big");
     
 }

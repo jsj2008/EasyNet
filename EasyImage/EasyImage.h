@@ -11,7 +11,7 @@
 
 #import "EasyCacheManager.h"
 #import "UIImageView+EasyImage.h"
-#import "EasyImageParas.h"
+#import "EasyParaObjectProtocol.h"
 
 #endif /* EasyImage_h */
 

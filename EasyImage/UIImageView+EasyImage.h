@@ -10,10 +10,11 @@
 
 #import "EasyImageParas.h"
 
+@protocol EasyParaObjectProtocol;
 
 @interface UIImageView(EasyImage)
 
--(void) easyImageWithPara:(EasyImageParas *) paras;//you should call it in main thread
+-(void) easyImageWithPara:(id<EasyParaObjectProtocol>) paras;//you should call it in main thread
 -(void) easyImageCancel;//you should call it in main thread
 
 - (void) easyGifInMainbundleForName:(NSString *) name;

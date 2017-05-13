@@ -1,5 +1,5 @@
 //
-//  EasyConQueueManager.h
+//  EasySerialQueueManager.h
 //  Images
 //
 //  Created by wangjufan on 13/5/2017.
@@ -8,14 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-
 #import "EasyQueueProtocol.h"
 
-@interface EasyConQueueManager : NSObject<EasyQueueProtocol>
+@interface EasySerialQueueManager : NSObject<EasyQueueProtocol>
 
 +(nullable instancetype) shareEasyQueueManager;
 
-
 @end
-
-

@@ -30,36 +30,35 @@
     urls = [[NSMutableArray alloc] init];
     
     manager = [EasyCacheManager new];
+//    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/05,c_fill,d_picasa,h_128,w_160.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/05,c_fill,d_picasa,h_128,w_160.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/05,c_fill,d_picasa,h_128,w_160.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
+//    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
+//    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
+//    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
+//    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
+//    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
+//    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
     [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/05,c_fill,d_picasa,h_128,w_160.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/05,c_fill,d_picasa,h_128,w_160.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/05,c_fill,d_picasa,h_128,w_160.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
     [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
+//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
     [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
-    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
-    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
-    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
-    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
-    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
-    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
-    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
-//    [urls addObject:@"http://c.3g.163.com/photo/api/list/0096/4GJ60096.json"];
-    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
-
+////    [urls addObject:@"http://c.3g.163.com/photo/api/list/0096/4GJ60096.json"];
+    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
 
     __weak typeof(self) wself = self;
     
@@ -69,7 +68,8 @@
             id<EasyParaObjectProtocol> para = [manager createEasyImageParas];
             para.url = key;
             para.cacher = [manager getEasyDiskCache];
-            para.downloader = [manager getTinyFileDownloader];
+//            para.downloader = [manager getTinyFileDownloader];
+            para.downloader = [manager getBigFileDownloader];
             para.owner = wself.imageView;
             para.autoCancel = YES;
             
@@ -83,7 +83,7 @@
     }];
     
     
-//    [self.imageView easyGifInMainbundleForName:@"stream_loading"];
+    [self.imageView easyGifInMainbundleForName:@"stream_loading"];
 
 }
 

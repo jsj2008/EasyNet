@@ -65,6 +65,7 @@
                 }else {
                     [data easyDispatchOnMain:^{
                         paras.owner.image = image;
+
                         if (paras.successBlock) {
                             paras.successBlock();
                         }
@@ -79,7 +80,7 @@
         [dataTask resume];
     };
     
-    [_queue dispatchBlock:downloadBlock onQueue:@"sdf"];
+    [_queue dispatchBlock:downloadBlock onQueue:EasyTinyFileDownload_Queue];
 }
 
 

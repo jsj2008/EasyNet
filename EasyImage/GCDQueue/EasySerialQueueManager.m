@@ -1,12 +1,12 @@
 //
-//  EasyConQueueManager.m
+//  EasySerialQueueManager.m
 //  Images
 //
 //  Created by wangjufan on 13/5/2017.
 //  Copyright © 2017 DuduWang. All rights reserved.
 //
 
-#import "EasyConQueueManager.h"
+#import "EasySerialQueueManager.h"
 
 
 static inline BOOL currentQueue(NSString * key){
@@ -17,18 +17,18 @@ static inline BOOL currentQueue(NSString * key){
     }
 }
 
-@interface EasyConQueueManager() {
+@interface EasySerialQueueManager() {
     NSMutableDictionary<NSString *,dispatch_queue_t> * _queueCollection;
 }
 @end
 
-@implementation EasyConQueueManager
+@implementation EasySerialQueueManager
 
 +(instancetype) shareEasyQueueManager{
     static id single = nil;
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
-        single = [EasyConQueueManager new];
+        single = [EasySerialQueueManager new];
     });
     return single;
 }
@@ -36,21 +36,20 @@ static inline BOOL currentQueue(NSString * key){
 -(instancetype) init{
     if (self = [super init]) {
         _queueCollection = [NSMutableDictionary dictionary];
-        dispatch_queue_t gq =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_queue_t disQue = dispatch_queue_create([QueueCon_Default UTF8String], DISPATCH_QUEUE_CONCURRENT);
+        dispatch_queue_t gq =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+        dispatch_queue_t disQue = dispatch_queue_create([QueueSerial_Default UTF8String], DISPATCH_QUEUE_SERIAL);
         dispatch_set_target_queue(disQue, gq);
         
-        [_queueCollection setObject:disQue forKey:QueueCon_Default];
+        [_queueCollection setObject:disQue forKey:QueueSerial_Default];
     }
     return self;
 }
 
 -(BOOL) dispatchBlock:(dispatch_block_t) block onQueue:(NSString *) key{
     @synchronized (self) {
-        NSLog(@"on  error  con");
         BOOL cqueue = currentQueue(key);
         if (key == nil) {
-            key = QueueCon_Default;
+            key = QueueSerial_Default;
         }
         dispatch_queue_t queue = [self queueForKey:key];
         if (queue){
@@ -70,7 +69,7 @@ static inline BOOL currentQueue(NSString * key){
     @synchronized (self) {
         BOOL cqueue = currentQueue(key);
         if (key == nil) {
-            key = QueueCon_Default;
+            key = QueueSerial_Default;
         }
         dispatch_queue_t queue = [self queueForKey:key];
         if (queue){
@@ -105,12 +104,12 @@ static inline BOOL currentQueue(NSString * key){
 -(const dispatch_queue_t) queueForKey:(NSString *)key{
     @synchronized (self) {
         if (key == nil) {
-            return [_queueCollection objectForKey:QueueCon_Default];
+            return [_queueCollection objectForKey:QueueSerial_Default];
         }else{
             dispatch_queue_t queue = [_queueCollection objectForKey:key];
             if (queue == nil) {
                 dispatch_queue_t gq =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-                queue = dispatch_queue_create([key UTF8String], DISPATCH_QUEUE_CONCURRENT);
+                queue = dispatch_queue_create([key UTF8String], DISPATCH_QUEUE_SERIAL);
                 dispatch_set_target_queue(queue, gq);
                 [_queueCollection setObject:queue forKey:key];
             }
@@ -118,7 +117,6 @@ static inline BOOL currentQueue(NSString * key){
         }
     }
 }
-
 
 @end
 

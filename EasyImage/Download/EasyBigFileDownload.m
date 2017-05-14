@@ -123,7 +123,6 @@
     EasyLog(error);
     self.currentPara = nil;
     dispatch_semaphore_signal(_semaphore);
-    
 }
 
 -(void) dataDidRerceived{

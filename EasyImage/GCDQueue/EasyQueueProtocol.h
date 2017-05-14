@@ -17,6 +17,7 @@
 
 
 @protocol EasyQueueProtocol <NSObject>
++(nullable instancetype) shareEasyQueueManager;
 
 -(BOOL) dispatchBlock:(nonnull dispatch_block_t) block onQueue:(nullable NSString *) key;
 

@@ -12,6 +12,5 @@
 
 @interface EasySerialQueueManager : NSObject<EasyQueueProtocol>
 
-+(nullable instancetype) shareEasyQueueManager;
 
 @end

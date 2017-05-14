@@ -13,7 +13,6 @@
 
 @interface EasyConQueueManager : NSObject<EasyQueueProtocol>
 
-+(nullable instancetype) shareEasyQueueManager;
 
 
 @end

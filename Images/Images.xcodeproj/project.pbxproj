@@ -32,6 +32,7 @@
 		D54A93DD1EC6FB470002874A /* EasySerialQueueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93DC1EC6FB470002874A /* EasySerialQueueManager.m */; };
 		D54A93E01EC724310002874A /* UIImage+Header.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93DF1EC724310002874A /* UIImage+Header.m */; };
 		D54A93E31EC730360002874A /* EasyProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93E21EC730360002874A /* EasyProgress.m */; };
+		D54A93E71EC815890002874A /* EasyImage.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D54A93E61EC815890002874A /* EasyImage.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		D54A93DF1EC724310002874A /* UIImage+Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Header.m"; sourceTree = "<group>"; };
 		D54A93E11EC730360002874A /* EasyProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyProgress.h; sourceTree = "<group>"; };
 		D54A93E21EC730360002874A /* EasyProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyProgress.m; sourceTree = "<group>"; };
+		D54A93E61EC815890002874A /* EasyImage.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = EasyImage.podspec; path = ../EasyImage.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 		D54A93441EC560B00002874A = {
 			isa = PBXGroup;
 			children = (
+				D54A93E61EC815890002874A /* EasyImage.podspec */,
 				D54A934F1EC560B00002874A /* Images */,
 				D54A93691EC560B00002874A /* ImagesTests */,
 				D54A93741EC560B00002874A /* ImagesUITests */,
@@ -412,6 +415,7 @@
 				D54A935D1EC560B00002874A /* Assets.xcassets in Resources */,
 				D54A935B1EC560B00002874A /* Main.storyboard in Resources */,
 				D54A93A21EC586BB0002874A /* stream_loading.gif in Resources */,
+				D54A93E71EC815890002874A /* EasyImage.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

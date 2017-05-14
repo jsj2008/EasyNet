@@ -10,7 +10,6 @@
 
 @interface UIImage(EasyImage)
 
-+ (NSString *) easyImageFormatForData:(NSData *)data;
 
 + (UIImage *) easyImageWithData:(NSData *)data;
 

@@ -11,7 +11,7 @@
 
 @protocol EasyDownloadProtocol;
 @protocol EasyCacheProtocol;
-@protocol EasyParaObjectProtocol;
+@protocol EasyImageProtocol;
 
 
 
@@ -34,8 +34,8 @@
 
 //paras
 @property (nonatomic, assign) NSInteger easyImageParasCount;
--(id<EasyParaObjectProtocol>) createEasyImageParas;
--(void) collectEasyImageParas:(id<EasyParaObjectProtocol>) para;
+-(id<EasyImageProtocol>) createEasyImageParas;
+-(void) collectEasyImageParas:(id<EasyImageProtocol>) para;
 
 
 @end

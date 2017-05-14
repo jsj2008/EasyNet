@@ -11,12 +11,12 @@
 
 @interface UIImage(Header)
 
-+(CGSize) imageSizeWithType:(NSString *) type andData:(NSData *) data;
++ (NSString *) easyImageFormatForData:(NSData *)data;
++(UIImageOrientation)easyImageOrientationForData:(NSData *)imageData;
 
-
-+(CGSize) imageSizeOfPNG:(NSData *) data ;
-+(CGSize) imageSizeOfJPG:(NSData *) data ;
-
++(CGSize) easyImageSizeForHeadData:(NSData *) data;
++(CGSize) easyImageSizeOfPNG:(NSData *) data ;
++(CGSize) easyImageSizeOfJPG:(NSData *) data ;
 
 @end
 

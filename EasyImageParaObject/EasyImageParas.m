@@ -17,7 +17,6 @@
 
 @synthesize autoCancel = _autoCancel;
 @synthesize hasCanceled = _hasCanceled;
-
 @synthesize downloader = _downloader;
 @synthesize cacher = _cacher;
 
@@ -28,6 +27,7 @@
 @synthesize failedBlock = _failedBlock;
 @synthesize successBlock = _successBlock;
 @synthesize recycleBlock = _recycleBlock;
+@synthesize progressBlock = _progressBlock;
 
 
 -(instancetype) init{
@@ -52,7 +52,7 @@
     
 }
 
--(void) setRecycleBlock:(void (^)(id<EasyParaObjectProtocol>))recycleBlock{
+-(void) setRecycleBlock:(void (^)(id<EasyImageProtocol>))recycleBlock{
     if (recycleBlock == nil) {
         NSLog(@"---------------");
     }

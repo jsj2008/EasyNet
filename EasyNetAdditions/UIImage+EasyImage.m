@@ -9,28 +9,11 @@
 #import "UIImage+EasyImage.h"
 
 #import "UIImage+Transform.h"
+#import "UIImage+Header.h"
 #import <ImageIO/ImageIO.h>
 
 @implementation UIImage(EasyImage)
 
-+ (NSString *) easyImageFormatForData:(NSData *)data {
-    uint8_t c;
-    [data getBytes:&c length:1];
-    switch (c) {
-        case 0xFF:
-            return @"image/jpeg";
-        case 0x89:
-            return @"image/png";
-        case 0x47:
-            return @"image/gif";
-        case 0x49:
-        case 0x4D:
-            return @"image/tiff";
-        case 0x52:// R as RIFF for WEBP
-            return nil;
-    }
-    return nil;
-}
 
 + (UIImage *) easyImageWithData:(NSData *)data {
     if (!data) {

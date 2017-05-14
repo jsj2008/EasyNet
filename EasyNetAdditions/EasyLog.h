@@ -13,3 +13,4 @@
 #define EasyLog(obj) NSLog(@"fun:%s : line:%d obj=%@", __func__, __LINE__, obj);
 
 #endif /* EasyLog_h */
+

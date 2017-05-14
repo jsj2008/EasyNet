@@ -10,7 +10,6 @@
 
 @interface NSObject(Dispatch)
 
-
 -(void) easyDispatchOnMain:(dispatch_block_t) block;
 -(void) easyDispatchOnCon:(dispatch_block_t) block;
 

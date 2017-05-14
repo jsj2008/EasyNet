@@ -10,12 +10,23 @@
 
 #import "UIImage+Header.h"
 
+
 @implementation EasyProgress
 
+
 -(void)headData:(NSData *) data withType:(NSString *) type {
-    CGSize size = [UIImage imageSizeWithType:type andData:data];
-    self.totalNumberOfBytes = size.height * size.width;
+    CGSize size = [UIImage easyImageSizeForHeadData:data];
+    self.totalNumberOfBytes = size.height * size.width * 16;
 }
 
+-(long long) totalNumberOfBytes{
+    if (_totalNumberOfBytes == 0) {
+        return 1000000;
+    }
+    return _totalNumberOfBytes;
+}
+
+
 @end
+
 

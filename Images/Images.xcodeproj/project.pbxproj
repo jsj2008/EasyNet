@@ -93,7 +93,6 @@
 		D54A940D1EC81CB50002874A /* EasyCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyCacheManager.h; sourceTree = "<group>"; };
 		D54A940E1EC81CB50002874A /* EasyCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyCacheManager.m; sourceTree = "<group>"; };
 		D54A940F1EC81CB50002874A /* EasyImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyImage.h; sourceTree = "<group>"; };
-		D54A94101EC81CB50002874A /* EasyParaObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyParaObjectProtocol.h; sourceTree = "<group>"; };
 		D54A94111EC81CB50002874A /* UIImageView+EasyImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+EasyImage.h"; sourceTree = "<group>"; };
 		D54A94121EC81CB50002874A /* UIImageView+EasyImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+EasyImage.m"; sourceTree = "<group>"; };
 		D54A94241EC81E520002874A /* EasyBigFileDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyBigFileDownload.h; sourceTree = "<group>"; };
@@ -103,11 +102,12 @@
 		D54A94281EC81E520002874A /* EasyProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyProgress.m; sourceTree = "<group>"; };
 		D54A94291EC81E520002874A /* EasyTinyFileDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyTinyFileDownload.h; sourceTree = "<group>"; };
 		D54A942A1EC81E520002874A /* EasyTinyFileDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyTinyFileDownload.m; sourceTree = "<group>"; };
-		D54A942C1EC81E520002874A /* EasyImageParaProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyImageParaProtocol.h; sourceTree = "<group>"; };
 		D54A942D1EC81E520002874A /* EasyImageParas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyImageParas.h; sourceTree = "<group>"; };
 		D54A942E1EC81E520002874A /* EasyImageParas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyImageParas.m; sourceTree = "<group>"; };
 		D54A94341EC81EE70002874A /* NSObject+Dispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Dispatch.h"; sourceTree = "<group>"; };
 		D54A94351EC81EE70002874A /* NSObject+Dispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Dispatch.m"; sourceTree = "<group>"; };
+		D54A943A1EC822570002874A /* EasyImageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyImageProtocol.h; sourceTree = "<group>"; };
+		D54A943D1EC823670002874A /* EasyInnerImageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyInnerImageProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +160,6 @@
 			children = (
 				D54A94231EC81E520002874A /* EasyImageDownload */,
 				D54A942B1EC81E520002874A /* EasyImageParaObject */,
-				D54A942F1EC81E520002874A /* EasyImageUpload */,
 				D54A93E81EC81CB50002874A /* EasyNetAdditions */,
 				D54A93F01EC81CB50002874A /* EasyNetCache */,
 				D54A94021EC81CB50002874A /* EasyNetGCDQueue */,
@@ -258,9 +257,9 @@
 				D54A940D1EC81CB50002874A /* EasyCacheManager.h */,
 				D54A940E1EC81CB50002874A /* EasyCacheManager.m */,
 				D54A940F1EC81CB50002874A /* EasyImage.h */,
-				D54A94101EC81CB50002874A /* EasyParaObjectProtocol.h */,
 				D54A94111EC81CB50002874A /* UIImageView+EasyImage.h */,
 				D54A94121EC81CB50002874A /* UIImageView+EasyImage.m */,
+				D54A943A1EC822570002874A /* EasyImageProtocol.h */,
 			);
 			name = EasyNetPublic;
 			path = ../../EasyNetPublic;
@@ -284,20 +283,12 @@
 		D54A942B1EC81E520002874A /* EasyImageParaObject */ = {
 			isa = PBXGroup;
 			children = (
-				D54A942C1EC81E520002874A /* EasyImageParaProtocol.h */,
 				D54A942D1EC81E520002874A /* EasyImageParas.h */,
 				D54A942E1EC81E520002874A /* EasyImageParas.m */,
+				D54A943D1EC823670002874A /* EasyInnerImageProtocol.h */,
 			);
 			name = EasyImageParaObject;
 			path = ../../EasyImageParaObject;
-			sourceTree = "<group>";
-		};
-		D54A942F1EC81E520002874A /* EasyImageUpload */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = EasyImageUpload;
-			path = ../../EasyImageUpload;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

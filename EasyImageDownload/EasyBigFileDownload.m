@@ -12,7 +12,7 @@
 
 #import "NSObject+Dispatch.h"
 #import "EasyQueueProtocol.h"
-#import "EasyImageParaProtocol.h"
+#import "EasyInnerImageProtocol.h"
 
 #import "EasyProgress.h"
 
@@ -31,7 +31,7 @@
                         EasyProgress * _progress;
 }
 
-@property (nonatomic, strong) id<EasyImageParaProtocol> currentPara;
+@property (nonatomic, strong) id<EasyInnerImageProtocol> currentPara;
 
 @property (nonatomic, strong) NSURLSession * urlSession;
 
@@ -66,10 +66,10 @@
     return _urlSession;
 }
 
-- (void) easyDownload:(id<EasyParaObjectProtocol>) para {
+- (void) easyDownload:(id<EasyImageProtocol>) para {
     
     __weak typeof(self) wself = self;
-    id<EasyImageParaProtocol> paras = (id<EasyImageParaProtocol>) para;
+    id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
     
     dispatch_block_t downloadBlock = ^{
         if (paras.hasCanceled) {
@@ -92,8 +92,8 @@
     [_queue dispatchBlock:downloadBlock onQueue:EasyBigFileDownload_Queue];
 }
 
--(void) easyCancelDownload:(id<EasyParaObjectProtocol>) para{
-    id<EasyImageParaProtocol> paras = (id<EasyImageParaProtocol>) para;
+-(void) easyCancelDownload:(id<EasyImageProtocol>) para{
+    id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
     if (paras.recycleBlock) {
         paras.recycleBlock(paras);
     }
@@ -127,9 +127,10 @@
 
 -(void) dataDidRerceived{
     _progress.currentNumberOfBytes = _mutData.length;
-    if (_progress.currentNumberOfBytes > 256 &&  _progress.currentNumberOfBytes > _progress.totalNumberOfBytes) {
+    if (_progress.currentNumberOfBytes > 256 &&  _progress.totalNumberOfBytes == 0) {
         [_progress headData:_mutData withType:self.currentPara.url];
     }
+    self.currentPara.progressBlock(_progress.currentNumberOfBytes / _progress.totalNumberOfBytes);
 }
 
 

@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 
-@protocol EasyParaObjectProtocol;
+@protocol EasyImageProtocol;
 
 @interface UIImageView(EasyImage)
 
--(void) easyImageWithPara:(id<EasyParaObjectProtocol>) paras;
+-(void) easyImageWithPara:(id<EasyImageProtocol>) paras;
 -(void) easyImageCancel;
 
 - (void) easyGifInMainbundleForName:(NSString *) name;

@@ -15,14 +15,14 @@
 
 #import "EasyCacheManager.h"
 #import "EasyDownloadProtocol.h"
-#import "EasyImageParaProtocol.h"
-#import "EasyParaObjectProtocol.h"
+#import "EasyInnerImageProtocol.h"
+#import "EasyImageProtocol.h"
 
 #define EasyImage_URL @"EasyImage_URL"
 
 @implementation UIImageView(EasyImage)
 
--(void) easyImageWithPara:(id<EasyParaObjectProtocol>) para{
+-(void) easyImageWithPara:(id<EasyImageProtocol>) para{
     __weak typeof(self) wself = self;
     
     @synchronized (wself) {
@@ -36,7 +36,7 @@
 -(void) easyImageCancel{
     __weak typeof(self) wself = self;
         @synchronized (wself) {
-        id<EasyImageParaProtocol> para = objc_getAssociatedObject(wself, EasyImage_URL);
+        id<EasyInnerImageProtocol> para = objc_getAssociatedObject(wself, EasyImage_URL);
         if (para) {
             if (para.autoCancel) {
                 [para setHasCanceled:YES];

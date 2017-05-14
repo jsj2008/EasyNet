@@ -103,8 +103,8 @@
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
--(id<EasyParaObjectProtocol>) createEasyImageParas{
-    id<EasyParaObjectProtocol> para = nil;
+-(id<EasyImageProtocol>) createEasyImageParas{
+    id<EasyImageProtocol> para = nil;
     @synchronized (_easyImageParasCache) {
         para = [_easyImageParasCache lastObject];
         [_easyImageParasCache removeObject:para];

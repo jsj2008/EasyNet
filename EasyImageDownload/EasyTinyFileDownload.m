@@ -11,7 +11,7 @@
 
 #import "NSObject+Dispatch.h"
 #import "EasyQueueProtocol.h"
-#import "EasyImageParaProtocol.h"
+#import "EasyInnerImageProtocol.h"
 
 #import "EasyLog.h"
 
@@ -38,10 +38,10 @@
     return _urlSession;
 }
 
-- (void) easyDownload:(id<EasyParaObjectProtocol>) para {
+- (void) easyDownload:(id<EasyImageProtocol>) para {
     
     __weak typeof(self) wself = self;
-    id<EasyImageParaProtocol> paras = (id<EasyImageParaProtocol>) para;
+    id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
     
     dispatch_block_t downloadBlock = ^{
         if (paras.hasCanceled) {
@@ -84,8 +84,8 @@
 }
 
 
--(void) easyCancelDownload:(id<EasyParaObjectProtocol>) para{
-    id<EasyImageParaProtocol> paras = (id<EasyImageParaProtocol>) para;
+-(void) easyCancelDownload:(id<EasyImageProtocol>) para{
+    id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
     if (paras.recycleBlock) {
         paras.recycleBlock(paras);
     }

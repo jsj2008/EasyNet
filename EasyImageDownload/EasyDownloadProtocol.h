@@ -22,12 +22,12 @@
 
 
 
-@protocol EasyParaObjectProtocol;
+@protocol EasyImageProtocol;
 
 @protocol EasyDownloadProtocol <NSObject>
 
-- (void) easyDownload:(id<EasyParaObjectProtocol>) paras;
--(void) easyCancelDownload:(id<EasyParaObjectProtocol>) paras;
+- (void) easyDownload:(id<EasyImageProtocol>) paras;
+-(void) easyCancelDownload:(id<EasyImageProtocol>) paras;
 
 @property (nonatomic, weak) id<EasyQueueProtocol> queue;
 

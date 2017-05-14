@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "EasyParaObjectProtocol.h"
-#import "EasyImageParaProtocol.h"
+#import "EasyImageProtocol.h"
+#import "EasyInnerImageProtocol.h"
 
-@interface EasyImageParas : NSObject<EasyImageParaProtocol>
+@interface EasyImageParas : NSObject<EasyInnerImageProtocol>
 
 
 @end

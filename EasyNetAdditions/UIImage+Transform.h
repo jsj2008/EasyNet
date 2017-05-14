@@ -11,7 +11,6 @@
 
 @interface UIImage(Transform)
 
-+(UIImageOrientation)easyImageOrientationForData:(NSData *)imageData;
 
 @end
 

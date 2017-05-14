@@ -61,14 +61,14 @@
 -(id<EasyDownloadProtocol>) getTinyFileDownloader{
     if (_tinyFileDownload == nil) {
         _tinyFileDownload = [EasyTinyFileDownload new];
-        _tinyFileDownload.queue = [EasyConQueueManager shareEasyQueueManager];
+        _tinyFileDownload.queueManager = [EasyConQueueManager shareEasyQueueManager];
     }
     return _tinyFileDownload;
 }
 -(id<EasyDownloadProtocol>) getBigFileDownloader{
     if (_bigFileDownload == nil) {
         _bigFileDownload = [EasyBigFileDownload new];
-        _bigFileDownload.queue = [EasySerialQueueManager shareEasyQueueManager];
+        _bigFileDownload.queueManager = [EasySerialQueueManager shareEasyQueueManager];
     }
     return _bigFileDownload;
 }

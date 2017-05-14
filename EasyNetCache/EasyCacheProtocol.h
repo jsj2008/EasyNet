@@ -15,7 +15,12 @@
 
 @protocol EasyCacheProtocol <NSObject>
 
-- (NSString *)filePathForKey:(NSString *)url;
+- (NSData *) dataForUrl:(NSString *)url;
+
+-(void) startCache:(NSString *) url;
+-(void) cache:(NSString *) url data:(NSData *) data;
+-(void) finishCache:(NSString *) url;
+
 
 @end
 

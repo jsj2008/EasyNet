@@ -34,6 +34,8 @@
 		D54A94361EC81EE70002874A /* NSObject+Dispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94351EC81EE70002874A /* NSObject+Dispatch.m */; };
 		D54A94401EC830750002874A /* EasyConBigFileDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A943F1EC830750002874A /* EasyConBigFileDownload.m */; };
 		D54A94431EC831670002874A /* EasyDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94421EC831670002874A /* EasyDownloader.m */; };
+		D54A94BB1EC855810002874A /* NSFileManager+Path.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94BA1EC855810002874A /* NSFileManager+Path.m */; };
+		D54A94BE1EC858800002874A /* EasyFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94BD1EC858800002874A /* EasyFileManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,10 @@
 		D54A943F1EC830750002874A /* EasyConBigFileDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyConBigFileDownload.m; sourceTree = "<group>"; };
 		D54A94411EC831670002874A /* EasyDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyDownloader.h; sourceTree = "<group>"; };
 		D54A94421EC831670002874A /* EasyDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyDownloader.m; sourceTree = "<group>"; };
+		D54A94B91EC855810002874A /* NSFileManager+Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Path.h"; sourceTree = "<group>"; };
+		D54A94BA1EC855810002874A /* NSFileManager+Path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Path.m"; sourceTree = "<group>"; };
+		D54A94BC1EC858800002874A /* EasyFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyFileManager.h; sourceTree = "<group>"; };
+		D54A94BD1EC858800002874A /* EasyFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyFileManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,15 +236,19 @@
 		D54A93F01EC81CB50002874A /* EasyNetCache */ = {
 			isa = PBXGroup;
 			children = (
+				D54A93F31EC81CB50002874A /* EasyCacheProtocol.h */,
 				D54A93F11EC81CB50002874A /* EasyBothCache.h */,
 				D54A93F21EC81CB50002874A /* EasyBothCache.m */,
-				D54A93F31EC81CB50002874A /* EasyCacheProtocol.h */,
 				D54A93F41EC81CB50002874A /* EasyDiskCache.h */,
 				D54A93F51EC81CB50002874A /* EasyDiskCache.m */,
 				D54A93F61EC81CB50002874A /* EasyMemoryCache.h */,
 				D54A93F71EC81CB50002874A /* EasyMemoryCache.m */,
 				D54A93F81EC81CB50002874A /* EasyNonCache.h */,
 				D54A93F91EC81CB50002874A /* EasyNonCache.m */,
+				D54A94B91EC855810002874A /* NSFileManager+Path.h */,
+				D54A94BA1EC855810002874A /* NSFileManager+Path.m */,
+				D54A94BC1EC858800002874A /* EasyFileManager.h */,
+				D54A94BD1EC858800002874A /* EasyFileManager.m */,
 			);
 			name = EasyNetCache;
 			path = ../../EasyNetCache;
@@ -442,10 +452,12 @@
 				D54A93551EC560B00002874A /* AppDelegate.m in Sources */,
 				D54A94161EC81CB50002874A /* UIImage+Transform.m in Sources */,
 				D54A94181EC81CB50002874A /* EasyDiskCache.m in Sources */,
+				D54A94BE1EC858800002874A /* EasyFileManager.m in Sources */,
 				D54A93521EC560B00002874A /* main.m in Sources */,
 				D54A94211EC81CB50002874A /* EasyCacheManager.m in Sources */,
 				D54A94221EC81CB50002874A /* UIImageView+EasyImage.m in Sources */,
 				D54A941F1EC81CB50002874A /* EasySerialQueueManager.m in Sources */,
+				D54A94BB1EC855810002874A /* NSFileManager+Path.m in Sources */,
 				D54A94331EC81E520002874A /* EasyImageParas.m in Sources */,
 				D54A94151EC81CB50002874A /* UIImage+Header.m in Sources */,
 				D54A94141EC81CB50002874A /* UIImage+EasyImage.m in Sources */,

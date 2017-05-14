@@ -11,25 +11,48 @@
 
 #import "UIImage+EasyImage.h"
 
-@interface EasyDiskCache(){
-    NSString * _easyCacheRoot;
-}
+#import "EasyFileManager.h"
+
+#define EasyDiskCache_Root @"EasyDiskCache_Root"
+
+@interface EasyDiskCache()
+
+@property (nonatomic, strong) EasyFileManager * easyFileManager;
+
 
 @end
 
 @implementation EasyDiskCache
 
-///////////////////////////////////////
-- (NSString *)rootPath{
-    if (_easyCacheRoot) {
-        return _easyCacheRoot;
-    }else{
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        _easyCacheRoot = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"EasyDiskCache"];
-        return _easyCacheRoot;
+-(instancetype) init{
+    if (self = [super init]) {
+        _easyFileManager = [EasyFileManager new];
     }
+    return self;
 }
-- (NSString *)filePathForKey:(NSString *)key{
+
+-(void) startCache:(NSString *) url{
+    NSString * shortPath = [self categorizingAndShorteningName:url];
+    shortPath = [ EasyDiskCache_Root stringByAppendingString:shortPath];
+    
+    [self.easyFileManager deleteCacheFile:shortPath];
+}
+
+-(void) cache:(NSString *) url data:(NSData *) data{
+    NSString * shortPath = [self categorizingAndShorteningName:url];
+    shortPath = [ EasyDiskCache_Root stringByAppendingString:shortPath];
+    
+    [self.easyFileManager writeCache:data withFileName:shortPath];
+}
+
+-(void) finishCache:(NSString *) url{
+    NSString * shortPath = [self categorizingAndShorteningName:url];
+    shortPath = [ EasyDiskCache_Root stringByAppendingString:shortPath];
+    [self.easyFileManager finishCacheFile:shortPath];
+}
+
+- (NSString *) categorizingAndShorteningName:(NSString *)key{
+    NSString * shortPath = @"";
     NSData *data = [NSData dataWithBytes:[key UTF8String] length:key.length];
     if ([data length] == 0) {
         return nil;
@@ -40,55 +63,34 @@
                           result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
                           result[8], result[9], result[10], result[11],result[12], result[13], result[14], result[15]];
     NSString *prefix = [cacheKey substringToIndex:2];
-    NSString *directoryPath = [self.rootPath stringByAppendingPathComponent:prefix];
-    return [directoryPath stringByAppendingPathComponent:cacheKey];
+    shortPath = [shortPath stringByAppendingPathComponent:prefix];
+    shortPath = [shortPath stringByAppendingPathComponent:cacheKey];
+    return shortPath;
 }
 
-////////////////
--(NSData *) dataForKey:(NSString *) key{
-    NSString * filepath = [self filePathForKey:key];
-    NSData *data = [NSData dataWithContentsOfFile:filepath];
-    if (data) {
-        return data;
-    }
-    
-    // fallback because of https://github.com/rs/SDWebImage/pull/976 that added the extension to the disk file name
-    // checking the key with and without the extension
-    data = [NSData dataWithContentsOfFile:[filepath stringByDeletingPathExtension]];
-    if (data) {
-        return data;
-    }
-    
-//    NSArray *customPaths = [self.customPaths copy];
-//    for (NSString *path in customPaths) {
-//        NSString *filePath = [self cachePathForKey:key inPath:path];
-//        NSData *imageData = [NSData dataWithContentsOfFile:filePath];
-//        if (imageData) {
-//            return imageData;
-//        }
-//        
-//        // fallback because of https://github.com/rs/SDWebImage/pull/976 that added the extension to the disk file name
-//        // checking the key with and without the extension
-//        imageData = [NSData dataWithContentsOfFile:[filePath stringByDeletingPathExtension]];
-//        if (imageData) {
-//            return imageData;
-//        }
+
+- (NSData *) dataForUrl:(NSString *)url {
+//    NSString * filepath = [self filePathForKey:url];
+//    NSData *data = [NSData dataWithContentsOfFile:filepath];
+//    if (data) {
+//        return data;
 //    }
-//    
+//    data = [NSData dataWithContentsOfFile:[filepath stringByDeletingPathExtension]];
+//    if (data) {
+//        return data;
+//    }
     return nil;
 }
 
 -(UIImage *) imageForKey:(NSString *) key{
-    NSData *data = [self dataForKey:key];
-    if (data) {
-        UIImage *image = [UIImage imageWithData:data];
-//        image = [self scaledImageForKey:key image:image];
-//        if (self.shouldDecompressImages) {
-//            image = [UIImage decodedImageWithImage:image];
-//        }
-        return image;
-    }
+//    NSData *data = [self dataForKey:key];
+//    if (data) {
+//        UIImage *image = [UIImage imageWithData:data];
+//        return image;
+//    }
     return nil;
 }
 
+
 @end
+

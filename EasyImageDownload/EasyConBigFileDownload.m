@@ -17,6 +17,8 @@
 
 #import "EasyProgress.h"
 
+#import "EasyDiskCache.h"
+#import "EasyCacheProtocol.h"
 
 @interface EasyConBigFileDownload() <NSURLSessionDelegate,
 NSURLSessionTaskDelegate,
@@ -24,11 +26,13 @@ NSURLSessionDataDelegate,
 NSURLSessionDownloadDelegate>{
     
     
-    
 }
 
 //@property (nonatomic, strong) id<EasyInnerImageProtocol> currentPara;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, EasyProgress*> * progresses;
+
+
+@property (nonatomic, strong) id<EasyCacheProtocol> diskCacher;
 
 @property (nonatomic, strong) NSURLSession * urlSession;
 
@@ -59,6 +63,13 @@ NSURLSessionDownloadDelegate>{
         }
     }
     return _urlSession;
+}
+
+-(id<EasyCacheProtocol>) diskCacher{
+    if (_diskCacher == nil) {
+        _diskCacher = [EasyDiskCache new];
+    }
+    return _diskCacher;
 }
 
 -(void) removeProgresses:(id<EasyImageProtocol>) para{
@@ -102,6 +113,7 @@ NSURLSessionDownloadDelegate>{
         }
         EasyLog(@"begin downloading  !!!");
         [wself addProgresses:para];
+        [wself.diskCacher startCache:para.url];
         
         NSURL * url = [NSURL URLWithString:paras.url];
         NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
@@ -122,6 +134,11 @@ NSURLSessionDownloadDelegate>{
 }
 
 -(void) loadingFinishedWithEerror:(NSError *) error forDataTask:(NSURLSessionDataTask *) dataTask{
+    
+    
+    EasyProgress * progress = [self readProgres: [dataTask.response.URL absoluteString]];
+    
+    [self.diskCacher finishCache:progress.easyImagePara.url];
     /*
     if (self.currentPara.url && !self.currentPara.hasCanceled) {
         if (error) {
@@ -148,6 +165,10 @@ NSURLSessionDownloadDelegate>{
 }
 
 -(void) didReceiveData:(NSData *) data forTask:(NSURLSessionDataTask *) dataTask {
+    
+    EasyProgress * progress = [self readProgres: [dataTask.response.URL absoluteString]];
+    
+    [self.diskCacher cache:progress.easyImagePara.url data:data];
     /*
     [dataTask.response.URL absoluteString]
     if (_mutData == nil) {

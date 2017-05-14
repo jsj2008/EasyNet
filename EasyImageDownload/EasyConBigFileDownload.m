@@ -1,12 +1,13 @@
 //
-//  EasyBigFileDownload.m
+//  EasyConBigFileDownload.m
 //  Images
 //
-//  Created by wangjufan on 12/5/2017.
+//  Created by wangjufan on 14/5/2017.
 //  Copyright © 2017 DuduWang. All rights reserved.
 //
 
-#import "EasyBigFileDownload.h"
+#import "EasyConBigFileDownload.h"
+
 
 #import "EasyLog.h"
 
@@ -17,31 +18,30 @@
 #import "EasyProgress.h"
 
 
-@interface EasyBigFileDownload() <NSURLSessionDelegate,
-                    NSURLSessionTaskDelegate,
-                    NSURLSessionDataDelegate,
-                    NSURLSessionDownloadDelegate>{
-                        
-                        NSMutableData * _mutData;
-                        dispatch_semaphore_t  _semaphore;
-                        
+@interface EasyConBigFileDownload() <NSURLSessionDelegate,
+NSURLSessionTaskDelegate,
+NSURLSessionDataDelegate,
+NSURLSessionDownloadDelegate>{
+    
+    
+    
 }
 
-@property (nonatomic, strong) EasyProgress * progress;
+//@property (nonatomic, strong) id<EasyInnerImageProtocol> currentPara;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, EasyProgress*> * progresses;
 
 @property (nonatomic, strong) NSURLSession * urlSession;
 
 @end
 
 
-@implementation EasyBigFileDownload
+@implementation EasyConBigFileDownload
 
 @synthesize queueManager = _queueManager;
 
 -(instancetype) init{
     if (self = [super init]) {
-        _semaphore = dispatch_semaphore_create(1);
-        _progress = [EasyProgress new];
+        _progresses = [NSMutableDictionary new];
     }
     return self;
 }
@@ -55,85 +55,120 @@
                 _urlSession = [NSURLSession sessionWithConfiguration:configuration
                                                             delegate:self
                                                        delegateQueue:nil];
-                
             }
         }
     }
     return _urlSession;
 }
 
+-(void) removeProgresses:(id<EasyImageProtocol>) para{
+    __weak typeof(self) wself = self;
+    dispatch_queue_t queue = [_queueManager queueForKey:EasyBigFileDownload_Queue];
+    dispatch_barrier_async(queue, ^{
+        [wself.progresses setObject:para forKey:para.url];
+    });
+}
+-(void) addProgresses:(id<EasyImageProtocol>) para {
+    __weak typeof(self) wself = self;
+    dispatch_queue_t queue = [_queueManager queueForKey:EasyBigFileDownload_Queue];
+    EasyProgress * progress = [EasyProgress createProgress];
+    dispatch_barrier_async(queue, ^{
+        [wself.progresses setObject:progress forKey:para.url];
+    });
+}
+-(EasyProgress *) readProgres:(NSString *) key{
+    __weak typeof(self) wself = self;
+    dispatch_queue_t queue = [_queueManager queueForKey:EasyBigFileDownload_Queue];
+    __block EasyProgress * progress = nil;
+    dispatch_barrier_sync(queue, ^{
+        progress = [wself.progresses objectForKey:key];
+    });
+    return progress;
+}
+
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+
 - (void) easyDownload:(id<EasyImageProtocol>) para {
-    
     __weak typeof(self) wself = self;
     id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
     
     dispatch_block_t downloadBlock = ^{
         if (paras.hasCanceled) {
+            [wself removeProgresses:para];
             return ;
         }
-        dispatch_semaphore_wait(_semaphore, -1);
-        
         EasyLog(@"begin downloading  !!!");
-        wself.progress.easyImagePara = paras;
-
+        [wself addProgresses:para];
+        
         NSURL * url = [NSURL URLWithString:paras.url];
         NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
         [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
         
         NSURLSessionDataTask * dataTask = [wself.urlSession dataTaskWithRequest:request];
         [dataTask resume];
-        
     };
     
     [_queueManager dispatchBlock:downloadBlock onQueue:EasyBigFileDownload_Queue];
 }
-
 -(void) easyCancelDownload:(id<EasyImageProtocol>) para{
     id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
+    [self removeProgresses:para];
     if (paras.recycleBlock) {
         paras.recycleBlock(paras);
     }
 }
 
--(void) loadingFinishedWithEerror:(NSError *) error{
-    
-    id<EasyInnerImageProtocol> easyImagePara = self.progress.easyImagePara;
-    
-    if (easyImagePara.url && !easyImagePara.hasCanceled) {
+-(void) loadingFinishedWithEerror:(NSError *) error forDataTask:(NSURLSessionDataTask *) dataTask{
+    /*
+    if (self.currentPara.url && !self.currentPara.hasCanceled) {
         if (error) {
-            if (easyImagePara.failedBlock) {
-                easyImagePara.failedBlock(error);
+            if (self.currentPara.failedBlock) {
+                self.currentPara.failedBlock(error);
             }
         }else {
             UIImage * image = [UIImage imageWithData:_mutData];
             [_mutData easyDispatchOnMain:^{
-               easyImagePara.owner.image = image;
-                if (easyImagePara.successBlock) {
-                    easyImagePara.successBlock();
+                self.currentPara.owner.image = image;
+                if (self.currentPara.successBlock) {
+                    self.currentPara.successBlock();
                 }
             }];
         }
-        if (easyImagePara.recycleBlock) {
-            easyImagePara.recycleBlock(self.progress.easyImagePara);
+        if (self.currentPara.recycleBlock) {
+            self.currentPara.recycleBlock(self.currentPara);
         }
     }
     _mutData = nil;
     EasyLog(error);
-    easyImagePara = nil;
-    dispatch_semaphore_signal(_semaphore);
+    self.currentPara = nil;
+     */
 }
 
--(void) dataDidRerceived{
-    id<EasyInnerImageProtocol> easyImage = self.progress.easyImagePara;
+-(void) didReceiveData:(NSData *) data forTask:(NSURLSessionDataTask *) dataTask {
+    /*
+    [dataTask.response.URL absoluteString]
+    if (_mutData == nil) {
+        _mutData = [NSMutableData new];
+    }
+    [_mutData appendData:data];
+    EasyLog([NSNumber numberWithInt:_mutData.length]);
+    
+    
     _progress.currentNumberOfBytes = _mutData.length;
     if (_progress.currentNumberOfBytes > 256 &&  _progress.totalNumberOfBytes == 0) {
-        [_progress headData:_mutData withType:easyImage.url];
+        [_progress headData:_mutData withType:self.currentPara.url];
     }
-    if (easyImage.progressBlock) {
-        easyImage.progressBlock(_progress.currentNumberOfBytes / _progress.totalNumberOfBytes);
-    }
+    self.currentPara.progressBlock(_progress.currentNumberOfBytes / _progress.totalNumberOfBytes);
+     */
 }
 
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
 /*********************************************************
  NSURLSessionDelegate
@@ -174,7 +209,7 @@
 }
 
 /*********************************************************
-NSURLSessionTaskDelegate
+ NSURLSessionTaskDelegate
  *********************************************************/
 
 /*
@@ -230,7 +265,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
 didCompleteWithError:(nullable NSError *)error{
-    [self loadingFinishedWithEerror:error];
+    [self loadingFinishedWithEerror:error forDataTask:task];
 }
 
 
@@ -252,11 +287,11 @@ didCompleteWithError:(nullable NSError *)error{
  */
 
 /* mutex with didReceiveData
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
-didReceiveResponse:(NSURLResponse *)response
+ - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+ didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler{
-    EasyLog(response);
-}
+ EasyLog(response);
+ }
  */
 
 
@@ -296,11 +331,11 @@ didBecomeStreamTask:(NSURLSessionStreamTask *)streamTask{
  */
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
     didReceiveData:(NSData *)data{
-    if (_mutData == nil) {
-        _mutData = [NSMutableData new];
-    }
-    [_mutData appendData:data];
-    [self dataDidRerceived];
+    
+    
+    
+    [self didReceiveData:(NSData *)data forTask:dataTask];
+    
 }
 
 /* Invoke the completion routine with a valid NSCachedURLResponse to
@@ -312,7 +347,7 @@ didBecomeStreamTask:(NSURLSessionStreamTask *)streamTask{
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
  willCacheResponse:(NSCachedURLResponse *)proposedResponse
  completionHandler:(void (^)(NSCachedURLResponse * _Nullable cachedResponse))completionHandler{
-    [self loadingFinishedWithEerror:nil];
+    [self loadingFinishedWithEerror:nil forDataTask:dataTask];
 }
 
 

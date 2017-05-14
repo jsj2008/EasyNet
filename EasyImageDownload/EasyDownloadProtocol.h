@@ -29,7 +29,7 @@
 - (void) easyDownload:(id<EasyImageProtocol>) paras;
 -(void) easyCancelDownload:(id<EasyImageProtocol>) paras;
 
-@property (nonatomic, weak) id<EasyQueueProtocol> queue;
+@property (nonatomic, strong) id<EasyQueueProtocol> queueManager;
 
 @end
 

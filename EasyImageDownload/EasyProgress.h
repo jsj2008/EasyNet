@@ -8,13 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+#import "EasyInnerImageProtocol.h"
+
 @interface EasyProgress : NSObject
 
 @property (nonatomic, assign) long long totalNumberOfBytes;
 @property (nonatomic, assign) long long currentNumberOfBytes;
 @property (nonatomic, assign) float ratio;
 
+@property (nonatomic, strong) id<EasyInnerImageProtocol> easyImagePara;
+
 -(void)headData:(NSData *) data withType:(NSString *) type;
+
++(instancetype) createProgress;
 
 
 @end

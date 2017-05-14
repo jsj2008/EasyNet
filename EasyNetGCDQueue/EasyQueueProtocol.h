@@ -23,6 +23,7 @@
 
 -(void) removeQueue:(nullable NSString *) key;
 -(void) clearQueue;
+-(const dispatch_queue_t) queueForKey:( NSString * _Nullable )key;
 
 @optional
 -(BOOL) dispatchBarrierBlock:(nonnull dispatch_block_t) block onQueue:(nullable NSString *) key;

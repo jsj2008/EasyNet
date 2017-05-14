@@ -23,7 +23,7 @@
 
 @implementation EasyTinyFileDownload
 
-@synthesize queue = _queue;
+@synthesize queueManager = _queueManager;
 
 -(NSURLSession *) urlSession{
     if (_urlSession == nil) {
@@ -80,7 +80,7 @@
         [dataTask resume];
     };
     
-    [_queue dispatchBlock:downloadBlock onQueue:EasyTinyFileDownload_Queue];
+    [_queueManager dispatchBlock:downloadBlock onQueue:EasyTinyFileDownload_Queue];
 }
 
 

@@ -32,6 +32,8 @@
 		D54A94321EC81E520002874A /* EasyTinyFileDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A942A1EC81E520002874A /* EasyTinyFileDownload.m */; };
 		D54A94331EC81E520002874A /* EasyImageParas.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A942E1EC81E520002874A /* EasyImageParas.m */; };
 		D54A94361EC81EE70002874A /* NSObject+Dispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94351EC81EE70002874A /* NSObject+Dispatch.m */; };
+		D54A94401EC830750002874A /* EasyConBigFileDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A943F1EC830750002874A /* EasyConBigFileDownload.m */; };
+		D54A94431EC831670002874A /* EasyDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94421EC831670002874A /* EasyDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,10 @@
 		D54A94351EC81EE70002874A /* NSObject+Dispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Dispatch.m"; sourceTree = "<group>"; };
 		D54A943A1EC822570002874A /* EasyImageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyImageProtocol.h; sourceTree = "<group>"; };
 		D54A943D1EC823670002874A /* EasyInnerImageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyInnerImageProtocol.h; sourceTree = "<group>"; };
+		D54A943E1EC830750002874A /* EasyConBigFileDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyConBigFileDownload.h; sourceTree = "<group>"; };
+		D54A943F1EC830750002874A /* EasyConBigFileDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyConBigFileDownload.m; sourceTree = "<group>"; };
+		D54A94411EC831670002874A /* EasyDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyDownloader.h; sourceTree = "<group>"; };
+		D54A94421EC831670002874A /* EasyDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,13 +274,17 @@
 		D54A94231EC81E520002874A /* EasyImageDownload */ = {
 			isa = PBXGroup;
 			children = (
+				D54A94261EC81E520002874A /* EasyDownloadProtocol.h */,
 				D54A94241EC81E520002874A /* EasyBigFileDownload.h */,
 				D54A94251EC81E520002874A /* EasyBigFileDownload.m */,
-				D54A94261EC81E520002874A /* EasyDownloadProtocol.h */,
 				D54A94271EC81E520002874A /* EasyProgress.h */,
 				D54A94281EC81E520002874A /* EasyProgress.m */,
 				D54A94291EC81E520002874A /* EasyTinyFileDownload.h */,
 				D54A942A1EC81E520002874A /* EasyTinyFileDownload.m */,
+				D54A943E1EC830750002874A /* EasyConBigFileDownload.h */,
+				D54A943F1EC830750002874A /* EasyConBigFileDownload.m */,
+				D54A94411EC831670002874A /* EasyDownloader.h */,
+				D54A94421EC831670002874A /* EasyDownloader.m */,
 			);
 			name = EasyImageDownload;
 			path = ../../EasyImageDownload;
@@ -441,9 +451,11 @@
 				D54A94141EC81CB50002874A /* UIImage+EasyImage.m in Sources */,
 				D54A94321EC81E520002874A /* EasyTinyFileDownload.m in Sources */,
 				D54A94191EC81CB50002874A /* EasyMemoryCache.m in Sources */,
+				D54A94431EC831670002874A /* EasyDownloader.m in Sources */,
 				D54A941A1EC81CB50002874A /* EasyNonCache.m in Sources */,
 				D54A94171EC81CB50002874A /* EasyBothCache.m in Sources */,
 				D54A94361EC81EE70002874A /* NSObject+Dispatch.m in Sources */,
+				D54A94401EC830750002874A /* EasyConBigFileDownload.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

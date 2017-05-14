@@ -14,6 +14,10 @@
 @implementation EasyProgress
 
 
++(instancetype) createProgress{
+    return [EasyProgress new];
+}
+
 -(void)headData:(NSData *) data withType:(NSString *) type {
     CGSize size = [UIImage easyImageSizeForHeadData:data];
     self.totalNumberOfBytes = size.height * size.width * 16;

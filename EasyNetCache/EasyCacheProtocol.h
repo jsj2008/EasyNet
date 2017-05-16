@@ -16,10 +16,12 @@
 @protocol EasyCacheProtocol <NSObject>
 
 - (NSData *) dataForUrl:(NSString *)url;
+- (NSData *) dataForUrl:(NSString *)url withLength:(NSInteger) length fromPosition:(long long) position;
 
--(void) startCache:(NSString *) url;
--(void) cache:(NSString *) url data:(NSData *) data;
--(void) finishCache:(NSString *) url;
+-(void) willStartAppendCache:(NSString *) url;
+-(void) appendCache:(NSString *) url data:(NSData *) data;
+
+-(void) deletableCache:(NSString *) url data:(NSData *) data;
 
 
 @end

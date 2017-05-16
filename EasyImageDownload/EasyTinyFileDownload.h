@@ -10,6 +10,11 @@
 
 #import "EasyDownloadProtocol.h"
 
+
 @interface EasyTinyFileDownload : NSObject<EasyDownloadProtocol>
 
+
+
 @end
+
+

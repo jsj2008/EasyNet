@@ -17,9 +17,6 @@
 
 
 
-#define EasyBigFileDownload_Queue @"EasyBigFileDownload_Queue"
-#define EasyTinyFileDownload_Queue @"EasyTinyFileDownload_Queue"
-
 
 
 @protocol EasyImageProtocol;

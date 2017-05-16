@@ -22,6 +22,7 @@
 
 #import "EasyConQueueManager.h"
 #import "EasySerialQueueManager.h"
+#import "EasyConBigFileDownload.h"
 
 @interface EasyCacheManager(){
     NSMutableArray * _easyImageParasCache;
@@ -33,6 +34,9 @@
     
     EasyTinyFileDownload * _tinyFileDownload;
     EasyBigFileDownload * _bigFileDownload;
+    EasyConBigFileDownload * _conbigFileDownload;
+    
+    
 }
 
 @end
@@ -71,6 +75,13 @@
         _bigFileDownload.queueManager = [EasySerialQueueManager shareEasyQueueManager];
     }
     return _bigFileDownload;
+}
+-(id<EasyDownloadProtocol>) getConBigFileDownloader{
+    if (_conbigFileDownload == nil) {
+        _conbigFileDownload = [EasyConBigFileDownload new];
+        _conbigFileDownload.queueManager = [EasyConQueueManager shareEasyQueueManager];
+    }
+    return _conbigFileDownload;
 }
 
 ////////////////////////////////////////////////////////////////////////

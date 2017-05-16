@@ -26,9 +26,9 @@
 @property (nonatomic, copy, nonnull) NSString * url;
 @property (nonatomic, assign) BOOL autoCancel;
 
-@property (nonatomic, copy, nonnull) void (^ failedBlock) ( NSError * _Nullable  error);
-@property (nonatomic, copy, nonnull) void (^ recycleBlock) (id<EasyImageProtocol> _Nullable  para);
-@property (nonatomic, copy, nonnull) void (^ successBlock) ();
+@property (nonatomic, copy, nonnull) void (^ failedBlock) (id<EasyImageProtocol>_Nullable para,NSError*_Nullable error);
+@property (nonatomic, copy, nonnull) void (^ successBlock) (id<EasyImageProtocol> _Nullable  para);
+
 @property (nonatomic, copy, nullable) void (^ progressBlock) (float ratio);
 
 @end

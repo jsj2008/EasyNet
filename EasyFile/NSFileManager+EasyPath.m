@@ -1,16 +1,15 @@
 //
-//  NSFileManager+Path.m
+//  NSFileManager+EasyPath.m
 //  Images
 //
-//  Created by wangjufan on 14/5/2017.
+//  Created by wangjufan on 16/5/2017.
 //  Copyright © 2017 DuduWang. All rights reserved.
 //
 
-#import "NSFileManager+Path.h"
+#import "NSFileManager+EasyPath.h"
 
 
-@implementation NSFileManager(Path)
-
+@implementation NSFileManager(EasyPath)
 
 +(NSString *) rootTmpPath{
     return NSTemporaryDirectory();
@@ -34,8 +33,6 @@
     return [NSSearchPathForDirectoriesInDomains(NSPreferencePanesDirectory, NSUserDomainMask, YES) lastObject];
 }
 
-
 @end
-
 
 

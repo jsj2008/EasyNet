@@ -15,6 +15,8 @@
 
 #import "EasyLog.h"
 
+#import "EasyCacheProtocol.h"
+
 @interface EasyTinyFileDownload() 
 
 @property (nonatomic, strong) NSURLSession * urlSession;
@@ -24,6 +26,10 @@
 @implementation EasyTinyFileDownload
 
 @synthesize queueManager = _queueManager;
+
+-(void) setQueueManager:(id<EasyQueueProtocol>)queueManager{
+    _queueManager = queueManager;
+}
 
 -(NSURLSession *) urlSession{
     if (_urlSession == nil) {
@@ -39,7 +45,6 @@
 }
 
 - (void) easyDownload:(id<EasyImageProtocol>) para {
-    
     __weak typeof(self) wself = self;
     id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
     
@@ -47,47 +52,43 @@
         if (paras.hasCanceled) {
             return ;
         }
-        
         NSURL * url = [NSURL URLWithString:paras.url];
         NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
         [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
         
         NSURLSessionDataTask * dataTask = [wself.urlSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             
+            [paras.cacher deletableCache:response.URL.absoluteString data:data];
             UIImage * image = [UIImage imageWithData:data];
             
             if (paras.url && !paras.hasCanceled) {
                 if (error) {
                     EasyLog(error);
                     if (paras.failedBlock) {
-                        paras.failedBlock(error);
+                        paras.failedBlock(paras,error);
                     }
                 }else {
                     [data easyDispatchOnMain:^{
                         paras.owner.image = image;
 
                         if (paras.successBlock) {
-                            paras.successBlock();
+                            paras.successBlock(paras);
                         }
                     }];
                 }
-                if (paras.recycleBlock) {
-                    paras.recycleBlock(paras);
-                }
+               
             }
         }];
-        
         [dataTask resume];
     };
     
-    [_queueManager dispatchBlock:downloadBlock onQueue:EasyTinyFileDownload_Queue];
+    [_queueManager dispatchBlock:downloadBlock onQueue:EasyFileDownload_ConQueue];
 }
-
 
 -(void) easyCancelDownload:(id<EasyImageProtocol>) para{
     id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
-    if (paras.recycleBlock) {
-        paras.recycleBlock(paras);
+    if (paras.failedBlock) {
+        paras.failedBlock(paras, nil);
     }
 }
 

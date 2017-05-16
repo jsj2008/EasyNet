@@ -56,13 +56,13 @@
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
-//    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
+    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
 //    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
 //    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
 //    [urls addObject:@"http://c.3g.163.com/photo/api/list/0096/4GJ60096.json"];
-    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+//    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
     
     for (NSString *sdf in urls) {
         [imageviewS addObject:[UIImageView new]];
@@ -78,26 +78,34 @@
             para.url = key;
             para.cacher = [manager getEasyDiskCache];
             para.autoCancel = YES;
-            para.recycleBlock = ^(id<EasyImageProtocol> para){
+            
+            para.failedBlock  = ^(id<EasyImageProtocol>_Nullable para,NSError* _Nullable error){
                 [manager collectEasyImageParas:para];
             };
             
+            para.successBlock = ^(id<EasyImageProtocol>_Nullable para){
+                [manager collectEasyImageParas:para];
+            };
 //            para.progressBlock = ^(float ratio){
 //                NSLog(@"==========%.2f=============", ratio);
 //            };
             
-//            para.downloader = [manager getTinyFileDownloader];
-//            para.owner = [imageviewS objectAtIndex:i];
+            para.downloader = [manager getTinyFileDownloader];
+            para.owner = [imageviewS objectAtIndex:i];
+             para.owner = wself.imageView;
 //            [[imageviewS objectAtIndex:i] easyImageWithPara:para];
             
-            para.downloader = [manager getBigFileDownloader];
-            para.owner = wself.imageView;
-            [wself.imageView easyImageWithPara:para];
+//            para.downloader = [manager getBigFileDownloader];
+//            para.owner = wself.imageView;
+//            [wself.imageView easyImageWithPara:para];
+            
+//            para.downloader = [manager getConBigFileDownloader];
+//            para.owner = wself.imageView;
+//            [wself.imageView easyImageWithPara:para];
             
             i++;
         }
     }];
-    
     
     [self.imageView easyGifInMainbundleForName:@"stream_loading"];
 

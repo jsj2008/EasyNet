@@ -31,6 +31,7 @@
 ///down loader
 -(id<EasyDownloadProtocol>) getTinyFileDownloader;
 -(id<EasyDownloadProtocol>) getBigFileDownloader;
+-(id<EasyDownloadProtocol>) getConBigFileDownloader;
 
 //paras
 @property (nonatomic, assign) NSInteger easyImageParasCount;

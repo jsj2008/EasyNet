@@ -26,7 +26,6 @@
 
 @synthesize failedBlock = _failedBlock;
 @synthesize successBlock = _successBlock;
-@synthesize recycleBlock = _recycleBlock;
 @synthesize progressBlock = _progressBlock;
 
 
@@ -48,15 +47,7 @@
     
     _failedBlock = nil;
     _successBlock = nil;
-    _recycleBlock = nil;
     
-}
-
--(void) setRecycleBlock:(void (^)(id<EasyImageProtocol>))recycleBlock{
-    if (recycleBlock == nil) {
-        NSLog(@"---------------");
-    }
-    _recycleBlock = recycleBlock;
 }
 
 -(void) dealloc{

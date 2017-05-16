@@ -28,7 +28,6 @@
 }
 
 @property (nonatomic, strong) EasyProgress * progress;
-
 @property (nonatomic, strong) NSURLSession * urlSession;
 
 @end
@@ -85,13 +84,13 @@
         
     };
     
-    [_queueManager dispatchBlock:downloadBlock onQueue:EasyBigFileDownload_Queue];
+    [_queueManager dispatchBlock:downloadBlock onQueue:EasyFileDownload_SerialQueue];
 }
 
 -(void) easyCancelDownload:(id<EasyImageProtocol>) para{
     id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
-    if (paras.recycleBlock) {
-        paras.recycleBlock(paras);
+    if (paras.failedBlock) {
+        paras.failedBlock(paras, nil);
     }
 }
 
@@ -102,19 +101,16 @@
     if (easyImagePara.url && !easyImagePara.hasCanceled) {
         if (error) {
             if (easyImagePara.failedBlock) {
-                easyImagePara.failedBlock(error);
+                easyImagePara.failedBlock(easyImagePara, error);
             }
         }else {
             UIImage * image = [UIImage imageWithData:_mutData];
             [_mutData easyDispatchOnMain:^{
                easyImagePara.owner.image = image;
                 if (easyImagePara.successBlock) {
-                    easyImagePara.successBlock();
+                    easyImagePara.successBlock(easyImagePara);
                 }
             }];
-        }
-        if (easyImagePara.recycleBlock) {
-            easyImagePara.recycleBlock(self.progress.easyImagePara);
         }
     }
     _mutData = nil;

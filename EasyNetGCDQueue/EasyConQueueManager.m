@@ -46,6 +46,9 @@ static inline BOOL currentQueue(NSString * key){
 }
 
 -(BOOL) dispatchBlock:(dispatch_block_t) block onQueue:(NSString *) key{
+    if (key) {
+        NSAssert([key isEqualToString:EasyFileDownload_ConQueue], @"invalide queue !");
+    }
     @synchronized (self) {
 
         BOOL cqueue = currentQueue(key);
@@ -67,6 +70,9 @@ static inline BOOL currentQueue(NSString * key){
     }
 }
 -(BOOL) dispatchBarrierBlock:(dispatch_block_t) block onQueue:(NSString *) key{
+    if (key) {
+        NSAssert([key isEqualToString:EasyFileDownload_ConQueue], @"invalide queue !");
+    }
     @synchronized (self) {
         BOOL cqueue = currentQueue(key);
         if (key == nil) {
@@ -91,6 +97,9 @@ static inline BOOL currentQueue(NSString * key){
 ////////////////////////////////////////////////////////
 
 -(void) removeQueue:(NSString *) key{
+    if (key) {
+        NSAssert([key isEqualToString:EasyFileDownload_ConQueue], @"invalide queue !");
+    }
     @synchronized (self) {
         if (key) {
             [_queueCollection removeObjectForKey:key];
@@ -103,6 +112,9 @@ static inline BOOL currentQueue(NSString * key){
     }
 }
 -(const dispatch_queue_t) queueForKey:(NSString *)key{
+    if (key) {
+        NSAssert([key isEqualToString:EasyFileDownload_ConQueue], @"invalide queue !");
+    }
     @synchronized (self) {
         if (key == nil) {
             return [_queueCollection objectForKey:QueueCon_Default];

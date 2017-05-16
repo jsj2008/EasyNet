@@ -1,16 +1,15 @@
 //
-//  NSFileManager+Path.h
+//  NSFileManager+EasyPath.h
 //  Images
 //
-//  Created by wangjufan on 14/5/2017.
+//  Created by wangjufan on 16/5/2017.
 //  Copyright © 2017 DuduWang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 
-
-@interface NSFileManager(Path)
+@interface NSFileManager(EasyPath)
 
 +(NSString *) rootTmpPath;
 +(NSString *) rootBundlePath;
@@ -21,8 +20,6 @@
 +(NSString *) rootCachePath;
 +(NSString *) rootPreferencesPath;
 
-
 @end
-
 
 

@@ -16,6 +16,10 @@
 #import <Foundation/Foundation.h>
 
 
+#define EasyFileDownload_SerialQueue @"EasyFileDownload_SerialQueue"
+#define EasyFileDownload_ConQueue @"EasyFileDownload_ConQueue"
+
+
 @protocol EasyQueueProtocol <NSObject>
 +(nullable instancetype) shareEasyQueueManager;
 

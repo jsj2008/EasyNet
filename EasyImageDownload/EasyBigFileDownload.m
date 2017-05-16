@@ -96,37 +96,37 @@
 
 -(void) loadingFinishedWithEerror:(NSError *) error{
     
-    id<EasyInnerImageProtocol> easyImagePara = self.progress.easyImagePara;
+    id<EasyInnerImageProtocol> para = self.progress.easyImagePara;
     
-    if (easyImagePara.url && !easyImagePara.hasCanceled) {
+    if (para.url && !para.hasCanceled) {
         if (error) {
-            if (easyImagePara.failedBlock) {
-                easyImagePara.failedBlock(easyImagePara, error);
+            if (para.failedBlock) {
+                para.failedBlock(para, error);
             }
         }else {
             UIImage * image = [UIImage imageWithData:_mutData];
             [_mutData easyDispatchOnMain:^{
-               easyImagePara.owner.image = image;
-                if (easyImagePara.successBlock) {
-                    easyImagePara.successBlock(easyImagePara);
+               para.owner.image = image;
+                if (para.successBlock) {
+                    para.successBlock(para);
                 }
             }];
         }
     }
     _mutData = nil;
     EasyLog(error);
-    easyImagePara = nil;
+    para = nil;
     dispatch_semaphore_signal(_semaphore);
 }
 
 -(void) dataDidRerceived{
-    id<EasyInnerImageProtocol> easyImage = self.progress.easyImagePara;
+    id<EasyInnerImageProtocol> para = self.progress.easyImagePara;
     _progress.currentNumberOfBytes = _mutData.length;
     if (_progress.currentNumberOfBytes > 256 &&  _progress.totalNumberOfBytes == 0) {
-        [_progress headData:_mutData withType:easyImage.url];
+        [_progress headData:_mutData withType:para.url];
     }
-    if (easyImage.progressBlock) {
-        easyImage.progressBlock(_progress.currentNumberOfBytes / _progress.totalNumberOfBytes);
+    if (para.progressBlock) {
+        para.progressBlock(_progress.currentNumberOfBytes / _progress.totalNumberOfBytes);
     }
 }
 

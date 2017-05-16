@@ -137,22 +137,22 @@ NSURLSessionDownloadDelegate>{
                       forDataTask:(NSURLSessionDataTask *) dataTask{
     
     EasyProgress * progress = [self readProgres: [dataTask.response.URL absoluteString]];
-    id<EasyInnerImageProtocol> easyImagePara = progress.easyImagePara;
+    id<EasyInnerImageProtocol> para = progress.easyImagePara;
 
     if (error == nil) {
-        if (easyImagePara.successBlock) {
-            easyImagePara.successBlock(easyImagePara);
+        if (para.successBlock) {
+            para.successBlock(para);
         }
-        NSData * data = [self.diskCacher dataForUrl:easyImagePara.url];
+        NSData * data = [self.diskCacher dataForUrl:para.url];
         UIImage * image = [UIImage imageWithData:data];
-        UIImageView * owner = easyImagePara.owner;
+        UIImageView * owner = para.owner;
         [data easyDispatchOnMain:^{
             owner.image = image;
         }];
         
     } else {
-        if (easyImagePara.failedBlock) {
-            easyImagePara.failedBlock(easyImagePara,error);
+        if (para.failedBlock) {
+            para.failedBlock(para,error);
         }
     }
 }
@@ -160,11 +160,11 @@ NSURLSessionDownloadDelegate>{
 -(void) didReceiveData:(NSData *) data forTask:(NSURLSessionDataTask *) dataTask {
     
     EasyProgress * progress = [self readProgres: [dataTask.response.URL absoluteString]];
-    id<EasyInnerImageProtocol> easyImagePara = progress.easyImagePara;
-    [self.diskCacher appendCache:easyImagePara.url data:data];
+    id<EasyInnerImageProtocol> para = progress.easyImagePara;
+    [self.diskCacher appendCache:para.url data:data];
 
-    if (easyImagePara.progressBlock) {
-        easyImagePara.progressBlock(2);
+    if (para.progressBlock) {
+        para.progressBlock(2);
     }
 }
 

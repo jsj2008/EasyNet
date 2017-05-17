@@ -10,7 +10,7 @@
 
 
 #define EasyURLCache_MemoryCache 1024*1024*10
-#define EasyURLCache_DiskCache 1024*1024*200
+#define EasyURLCache_DiskCache 1024*1024*100
 #define EasyURLCache_DefaultPath @"easy.url.image"
 
 @protocol EasyCacheProtocol;

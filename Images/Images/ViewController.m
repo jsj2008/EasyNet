@@ -75,25 +75,25 @@
 //    
 //    
     [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
-    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
-    
-    
-    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
-    
-    
-    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
-    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
-    
-    
-    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+//    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
 //    
-    
-    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+//    
+//    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+//    
+//    
+//    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+//    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+//    
+//    
+//    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+////    
+//    
+//    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
     
 
 //    [self performSelector:@selector(delayedRun) withObject:nil afterDelay:4];
 //    [self performSelector:@selector(delayedRun) withObject:nil afterDelay:4];
-    [self performSelector:@selector(delayedRun) withObject:nil afterDelay:4];
+    [self performSelector:@selector(delayedRun) withObject:nil afterDelay:2];
     
 }
 

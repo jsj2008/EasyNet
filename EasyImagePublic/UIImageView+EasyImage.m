@@ -18,16 +18,24 @@
 #import "EasyInnerImageProtocol.h"
 #import "EasyImageProtocol.h"
 
+#import "EasyInnerImageProtocol.h"
+#import "EasyImageOwnershipProtocol.h"
+
 #define EasyImage_URL @"EasyImage_URL"
 
 @implementation UIImageView(EasyImage)
 
 -(void) easyImageWithPara:(id<EasyImageProtocol>) para{
     __weak typeof(self) wself = self;
+    id<EasyInnerImageProtocol> inerPara = (id<EasyInnerImageProtocol>)para;
     
     @synchronized (wself) {
         [wself easyImageCancel];
-        para.owner = wself;
+        
+        inerPara.recycledBlock = ^(id<EasyInnerImageProtocol> para){
+            objc_setAssociatedObject(wself, EasyImage_URL, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        };
+        para.owner = (id<EasyImageOwnershipProtocol>) wself;
         objc_setAssociatedObject(wself, EasyImage_URL, para, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [para.downloader easyDownload:para];
     }
@@ -39,8 +47,7 @@
         id<EasyInnerImageProtocol> para = objc_getAssociatedObject(wself, EasyImage_URL);
         if (para) {
             if (para.autoCancel) {
-                [para setHasCanceled:YES];
-                [para.downloader easyCancelDownload:para];
+                [para.downloader easyCancel:para];
                 objc_setAssociatedObject(wself, EasyImage_URL, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             }
         }
@@ -69,6 +76,7 @@
     UIImage * image = [UIImage easyGifWithData:data];
     self.image = image;
 }
+
 - (void) easyPngInMainbundleForName:(NSString *) name{
     CGFloat scale = [UIScreen mainScreen].scale;
     NSData *data = nil;

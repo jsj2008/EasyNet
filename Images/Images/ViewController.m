@@ -17,7 +17,6 @@
     NSMutableArray * paras;
     
     NSMutableArray * imageviewS;
-    
     EasyCacheManager * manager;
 }
 
@@ -36,9 +35,9 @@
     manager = [EasyCacheManager new];
 //    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
+////    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/05,c_fill,d_picasa,h_128,w_160.jpg"];
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/05,c_fill,d_picasa,h_128,w_160.jpg"];
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/05,c_fill,d_picasa,h_128,w_160.jpg"];
-//    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/05,c_fill,d_picasa,h_128,w_160.jpg"];
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
 //    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
@@ -56,21 +55,56 @@
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
-    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
 //    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/01,c_fill,d_flickr,h_270,w_360.jpg"];
 //    [urls addObject:@"http://evathumber.avnpc.com/thumb/d/02,c_fill,d_picasa,h_128,w_260.jpg"];
 //    [urls addObject:@"http://img.ipc.me/uploads/post/17031/thumb/140x100.jpg"];
-//    [urls addObject:@"http://c.3g.163.com/photo/api/list/0096/4GJ60096.json"];
+////    [urls addObject:@"http://c.3g.163.com/photo/api/list/0096/4GJ60096.json"];
+//    
 //    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+//    
+//    
+//    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+//    
+//    
+//    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+//    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+//    
+//    
+//    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+//    
+//    
+    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
     
-    for (NSString *sdf in urls) {
-        [imageviewS addObject:[UIImageView new]];
-    }
+    
+    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+    
+    
+    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+    
+    
+    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+//    
+    
+    [urls addObject:@"http://sony.it168.com/data/attachment/forum/201410/20/2154195j037033ujs7cio0.jpg"];
+    
 
-    __weak typeof(self) wself = self;
+//    [self performSelector:@selector(delayedRun) withObject:nil afterDelay:4];
+//    [self performSelector:@selector(delayedRun) withObject:nil afterDelay:4];
+    [self performSelector:@selector(delayedRun) withObject:nil afterDelay:4];
     
+}
+
+
+- (void) delayedRun{
+    __weak typeof(self) wself = self;
+    wself.imageView.image = nil;
+    
+    [self.imageView easyGifInMainbundleForName:@"stream_loading"];
     __block int i = 0;
+    
     [self easyDispatchOnCon:^{
         for (NSString * key in urls) {
             
@@ -81,23 +115,27 @@
             
             para.failedBlock  = ^(id<EasyImageProtocol>_Nullable para,NSError* _Nullable error){
                 [manager collectEasyImageParas:para];
+                [wself performSelector:@selector(delayedRun) withObject:nil afterDelay:3];
             };
             
             para.successBlock = ^(id<EasyImageProtocol>_Nullable para){
                 [manager collectEasyImageParas:para];
+                [wself performSelector:@selector(delayedRun) withObject:nil afterDelay:3];
             };
-//            para.progressBlock = ^(float ratio){
-//                NSLog(@"==========%.2f=============", ratio);
-//            };
             
-            para.downloader = [manager getTinyFileDownloader];
-            para.owner = [imageviewS objectAtIndex:i];
-             para.owner = wself.imageView;
-//            [[imageviewS objectAtIndex:i] easyImageWithPara:para];
+            //            para.progressBlock = ^(float ratio){
+            //                NSLog(@"==========%.2f=============", ratio);
+            //            };
             
-//            para.downloader = [manager getBigFileDownloader];
-//            para.owner = wself.imageView;
-//            [wself.imageView easyImageWithPara:para];
+                        para.downloader = [manager getEasyURLCacheDownloader];
+//                        para.owner = [imageviewS objectAtIndex:i];
+                         para.owner = wself.imageView;
+            [wself.imageView easyImageCancel];
+                        [wself.imageView   easyImageWithPara:para];
+            
+            //            para.downloader = [manager getBigFileDownloader];
+            //            para.owner = wself.imageView;
+            //            [wself.imageView easyImageWithPara:para];
             
 //            para.downloader = [manager getConBigFileDownloader];
 //            para.owner = wself.imageView;
@@ -107,10 +145,8 @@
         }
     }];
     
-    [self.imageView easyGifInMainbundleForName:@"stream_loading"];
 
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -24,7 +24,7 @@
 NSURLSessionTaskDelegate,
 NSURLSessionDataDelegate,
 NSURLSessionDownloadDelegate>{
-    
+    long long sumsize ;
     
 }
 
@@ -54,7 +54,7 @@ NSURLSessionDownloadDelegate>{
         @synchronized (self) {
             if (!_urlSession) {
                 NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-                configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+                configuration.requestCachePolicy = NSURLRequestReturnCacheDataDontLoad;
                 _urlSession = [NSURLSession sessionWithConfiguration:configuration
                                                             delegate:self
                                                        delegateQueue:nil];
@@ -107,14 +107,11 @@ NSURLSessionDownloadDelegate>{
     id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
     
     dispatch_block_t downloadBlock = ^{
-        if (paras.hasCanceled) {
-            [wself removeProgresses:para];
-            return ;
-        }
+    
         EasyLog(@"begin downloading  !!!");
         [wself addProgresses:para];
         [wself.diskCacher willStartAppendCache:para.url];
-        
+        sumsize = 0;
         NSURL * url = [NSURL URLWithString:paras.url];
         NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
         [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
@@ -125,7 +122,7 @@ NSURLSessionDownloadDelegate>{
     
     [_queueManager dispatchBlock:downloadBlock onQueue:EasyFileDownload_ConQueue];
 }
--(void) easyCancelDownload:(id<EasyImageProtocol>) para{
+-(void) easyCancel:(id<EasyImageProtocol>) para{
     id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
     [self removeProgresses:para];
     if (paras.failedBlock) {
@@ -140,17 +137,23 @@ NSURLSessionDownloadDelegate>{
     id<EasyInnerImageProtocol> para = progress.easyImagePara;
 
     if (error == nil) {
-        if (para.successBlock) {
-            para.successBlock(para);
-        }
         NSData * data = [self.diskCacher dataForUrl:para.url];
+        
+        NSLog(@"-----  read sum  == %ld", sumsize);
+        NSLog(@"-----  self sum  == %ld", data.length);
+
         UIImage * image = [UIImage imageWithData:data];
         UIImageView * owner = para.owner;
         [data easyDispatchOnMain:^{
             owner.image = image;
         }];
+        if (para.successBlock) {
+            para.successBlock(para);
+        }
         
     } else {
+        EasyLog(error);
+        EasyLog(para.url);
         if (para.failedBlock) {
             para.failedBlock(para,error);
         }
@@ -159,6 +162,8 @@ NSURLSessionDownloadDelegate>{
 
 -(void) didReceiveData:(NSData *) data forTask:(NSURLSessionDataTask *) dataTask {
     
+    NSLog(@"-----  read sizeof  == %ld", data.length);
+    sumsize += data.length;
     EasyProgress * progress = [self readProgres: [dataTask.response.URL absoluteString]];
     id<EasyInnerImageProtocol> para = progress.easyImagePara;
     [self.diskCacher appendCache:para.url data:data];

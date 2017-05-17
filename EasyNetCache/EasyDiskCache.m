@@ -13,6 +13,8 @@
 
 #import "EasyFileManager.h"
 
+#import "EasyLog.h"
+
 #define EasyDiskCache_Root @"/EasyDiskCacheRoot"
 
 
@@ -47,6 +49,11 @@
 
 
 -(void) deletableCache:(NSString *) url data:(NSData *) data{
+    if (url == nil) {
+        static NSString * sinfo = @"url is nil";
+        EasyLog( sinfo );
+        return;
+    }
     NSString * shortPath = [self categorizingAndShorteningName:url];
     shortPath = [ EasyDiskCache_Root stringByAppendingString:shortPath];
     [self.easyFileManager writeCache:data withFileName:shortPath];

@@ -24,6 +24,10 @@
 #import "EasySerialQueueManager.h"
 #import "EasyConBigFileDownload.h"
 
+
+
+#import "EasyURLCacheDownload.h"
+
 @interface EasyCacheManager(){
     NSMutableArray * _easyImageParasCache;
     
@@ -31,12 +35,12 @@
     EasyDiskCache * _diskCache;
     EasyMemoryCache * _memoryCache;
     EasyNonCache * _nonCache;
-    
+
     EasyTinyFileDownload * _tinyFileDownload;
     EasyBigFileDownload * _bigFileDownload;
     EasyConBigFileDownload * _conbigFileDownload;
     
-    
+    EasyURLCacheDownload * _urlCahceDownload;
 }
 
 @end
@@ -46,7 +50,7 @@
 -(instancetype) init{
     if (self = [super init]) {
         _easyImageParasCache = [NSMutableArray new];
-        _easyImageParasCount = 40;
+        _easyParasCount = 40;
     }
     return self;
 }
@@ -63,25 +67,43 @@
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
 -(id<EasyDownloadProtocol>) getTinyFileDownloader{
-    if (_tinyFileDownload == nil) {
-        _tinyFileDownload = [EasyTinyFileDownload new];
-        _tinyFileDownload.queueManager = [EasyConQueueManager shareEasyQueueManager];
+    @synchronized (self) {
+        
+        if (_tinyFileDownload == nil) {
+            _tinyFileDownload = [EasyTinyFileDownload new];
+            _tinyFileDownload.queueManager = [EasyConQueueManager shareEasyQueueManager];
+        }
+        return _tinyFileDownload;
     }
-    return _tinyFileDownload;
 }
 -(id<EasyDownloadProtocol>) getBigFileDownloader{
-    if (_bigFileDownload == nil) {
-        _bigFileDownload = [EasyBigFileDownload new];
-        _bigFileDownload.queueManager = [EasySerialQueueManager shareEasyQueueManager];
+    @synchronized (self) {
+        
+        if (_bigFileDownload == nil) {
+            _bigFileDownload = [EasyBigFileDownload new];
+            _bigFileDownload.queueManager = [EasySerialQueueManager shareEasyQueueManager];
+        }
+        return _bigFileDownload;
     }
-    return _bigFileDownload;
 }
 -(id<EasyDownloadProtocol>) getConBigFileDownloader{
-    if (_conbigFileDownload == nil) {
-        _conbigFileDownload = [EasyConBigFileDownload new];
-        _conbigFileDownload.queueManager = [EasyConQueueManager shareEasyQueueManager];
+    @synchronized (self) {
+        if (_conbigFileDownload == nil) {
+            _conbigFileDownload = [EasyConBigFileDownload new];
+            _conbigFileDownload.queueManager = [EasyConQueueManager shareEasyQueueManager];
+        }
+        return _conbigFileDownload;
     }
-    return _conbigFileDownload;
+}
+
+-(id<EasyDownloadProtocol>) getEasyURLCacheDownloader{
+    @synchronized (self) {
+        if (_urlCahceDownload == nil) {
+            _urlCahceDownload = [EasyURLCacheDownload new];
+            _urlCahceDownload.queueManager = [EasyConQueueManager shareEasyQueueManager];
+        }
+        return _urlCahceDownload;
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -112,6 +134,7 @@
     return _bothCache;
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 -(id<EasyImageProtocol>) createEasyImageParas{
@@ -126,9 +149,10 @@
     NSLog(@"%@", para);
     return para;
 }
+
 -(void) collectEasyImageParas:(EasyImageParas *) para{
     @synchronized (_easyImageParasCache) {
-        if ([_easyImageParasCache count] < _easyImageParasCount) {
+        if ([_easyImageParasCache count] < _easyParasCount) {
             [_easyImageParasCache addObject:para];
 #pragma clang diagnostic ignored "-Wundeclared-selector"
             [para performSelector:@selector(reset) withObject:nil];
@@ -136,11 +160,11 @@
     }
 }
 
--(void) setEasyImageParasCount:(NSInteger)easyImageParasCount{
-    _easyImageParasCount = easyImageParasCount;
+-(void) setEasyParasCount:(NSInteger)easyParasCount{
+    _easyParasCount = easyParasCount;
     @synchronized (_easyImageParasCache) {
-        if ([_easyImageParasCache count] > _easyImageParasCount+1) {
-            NSRange range = NSMakeRange(_easyImageParasCount, [_easyImageParasCache count] - _easyImageParasCount);
+        if ([_easyImageParasCache count] > _easyParasCount+1) {
+            NSRange range = NSMakeRange(_easyParasCount, [_easyImageParasCache count] - _easyParasCount);
             [_easyImageParasCache removeObjectsInRange: range];
         }
     }

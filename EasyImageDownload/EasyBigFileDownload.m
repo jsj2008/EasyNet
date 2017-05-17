@@ -16,6 +16,9 @@
 
 #import "EasyProgress.h"
 
+#import "EasyImageProtocol.h"
+#import "EasyImageOwnershipProtocol.h"
+
 
 @interface EasyBigFileDownload() <NSURLSessionDelegate,
                     NSURLSessionTaskDelegate,
@@ -67,9 +70,7 @@
     id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
     
     dispatch_block_t downloadBlock = ^{
-        if (paras.hasCanceled) {
-            return ;
-        }
+      
         dispatch_semaphore_wait(_semaphore, -1);
         
         EasyLog(@"begin downloading  !!!");
@@ -81,13 +82,12 @@
         
         NSURLSessionDataTask * dataTask = [wself.urlSession dataTaskWithRequest:request];
         [dataTask resume];
-        
     };
     
     [_queueManager dispatchBlock:downloadBlock onQueue:EasyFileDownload_SerialQueue];
 }
 
--(void) easyCancelDownload:(id<EasyImageProtocol>) para{
+-(void) easyCancel:(id<EasyImageProtocol>) para{
     id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
     if (paras.failedBlock) {
         paras.failedBlock(paras, nil);
@@ -98,7 +98,7 @@
     
     id<EasyInnerImageProtocol> para = self.progress.easyImagePara;
     
-    if (para.url && !para.hasCanceled) {
+    if (para.url) {
         if (error) {
             if (para.failedBlock) {
                 para.failedBlock(para, error);

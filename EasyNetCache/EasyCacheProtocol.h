@@ -15,6 +15,7 @@
 
 @protocol EasyCacheProtocol <NSObject>
 
+@optional
 - (NSData *) dataForUrl:(NSString *)url;
 - (NSData *) dataForUrl:(NSString *)url withLength:(NSInteger) length fromPosition:(long long) position;
 

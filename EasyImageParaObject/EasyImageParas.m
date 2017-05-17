@@ -16,7 +16,6 @@
 @implementation EasyImageParas
 
 @synthesize autoCancel = _autoCancel;
-@synthesize hasCanceled = _hasCanceled;
 @synthesize downloader = _downloader;
 @synthesize cacher = _cacher;
 
@@ -28,6 +27,9 @@
 @synthesize successBlock = _successBlock;
 @synthesize progressBlock = _progressBlock;
 
+@synthesize recycledBlock = _recycledBlock;
+
+@synthesize sessionTask = _sessionTask;
 
 -(instancetype) init{
     if (self = [super init]) {
@@ -37,13 +39,19 @@
 }
 
 -(void) reset{
+    __weak typeof(self) wself = self;
+    if (_recycledBlock) {
+        _recycledBlock(wself);
+    }
+    _recycledBlock = nil;
     _autoCancel = NO;
-    _hasCanceled = NO;
     
     _url = nil;
     _defaultImage = nil;
     _downloader = nil;
     _cacher = nil;
+    
+    _owner = nil;
     
     _failedBlock = nil;
     _successBlock = nil;

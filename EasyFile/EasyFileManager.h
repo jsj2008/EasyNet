@@ -16,10 +16,11 @@
 -(BOOL) writeCache:(NSData *) data withFileName:(NSString *) shortPath;
 -(BOOL) appendCache:(NSData *) data withFileName:(NSString *) shortPath;
 
--(NSData *) readCache:(NSString *) shortPath withLength:(NSInteger) length;
+-(NSData *) readCache:(NSString *) shortPath withLength:(NSInteger) length formPositon:(long long) position;
 -(NSData *) readCache:(NSString *) shortPath;
 
 +(BOOL) createCacheDirectory:(NSString *) root;
+
 
 @end
 

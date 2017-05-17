@@ -14,8 +14,11 @@
 
 @protocol EasyInnerImageProtocol <NSObject, EasyImageProtocol>
 
-@property (atomic, assign) BOOL hasCanceled;
-@property (nonatomic, weak) UIImageView * owner;
+//@property (atomic, assign) BOOL hasCanceled;
+//@property (nonatomic, weak, nullable) UIImageView * owner;
+@property (nonatomic, copy, nonnull) void (^ recycledBlock) (id<EasyImageProtocol> _Nullable  para);
+
+@property (nonatomic, weak, nullable) NSURLSessionTask * sessionTask;
 
 
 @end

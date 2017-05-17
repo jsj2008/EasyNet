@@ -25,8 +25,6 @@
 		D54A941A1EC81CB50002874A /* EasyNonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93F91EC81CB50002874A /* EasyNonCache.m */; };
 		D54A941E1EC81CB50002874A /* EasyConQueueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94041EC81CB50002874A /* EasyConQueueManager.m */; };
 		D54A941F1EC81CB50002874A /* EasySerialQueueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94071EC81CB50002874A /* EasySerialQueueManager.m */; };
-		D54A94211EC81CB50002874A /* EasyCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A940E1EC81CB50002874A /* EasyCacheManager.m */; };
-		D54A94221EC81CB50002874A /* UIImageView+EasyImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94121EC81CB50002874A /* UIImageView+EasyImage.m */; };
 		D54A94301EC81E520002874A /* EasyBigFileDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94251EC81E520002874A /* EasyBigFileDownload.m */; };
 		D54A94311EC81E520002874A /* EasyProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94281EC81E520002874A /* EasyProgress.m */; };
 		D54A94321EC81E520002874A /* EasyTinyFileDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A942A1EC81E520002874A /* EasyTinyFileDownload.m */; };
@@ -36,6 +34,10 @@
 		D54A94431EC831670002874A /* EasyDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94421EC831670002874A /* EasyDownloader.m */; };
 		D54A94CD1ECAE21D0002874A /* EasyFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94CA1ECAE21D0002874A /* EasyFileManager.m */; };
 		D54A94D11ECAE2610002874A /* NSFileManager+EasyPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94D01ECAE2610002874A /* NSFileManager+EasyPath.m */; };
+		D54A94D51ECC447A0002874A /* EasyURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94D41ECC447A0002874A /* EasyURLCache.m */; };
+		D54A94D81ECC4B0C0002874A /* EasyURLCacheDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94D71ECC4B0C0002874A /* EasyURLCacheDownload.m */; };
+		D54A94E11ECC59750002874A /* EasyCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94DB1ECC59750002874A /* EasyCacheManager.m */; };
+		D54A94E21ECC59750002874A /* UIImageView+EasyImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94E01ECC59750002874A /* UIImageView+EasyImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,11 +96,6 @@
 		D54A94051EC81CB50002874A /* EasyQueueProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyQueueProtocol.h; sourceTree = "<group>"; };
 		D54A94061EC81CB50002874A /* EasySerialQueueManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasySerialQueueManager.h; sourceTree = "<group>"; };
 		D54A94071EC81CB50002874A /* EasySerialQueueManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasySerialQueueManager.m; sourceTree = "<group>"; };
-		D54A940D1EC81CB50002874A /* EasyCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyCacheManager.h; sourceTree = "<group>"; };
-		D54A940E1EC81CB50002874A /* EasyCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyCacheManager.m; sourceTree = "<group>"; };
-		D54A940F1EC81CB50002874A /* EasyImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyImage.h; sourceTree = "<group>"; };
-		D54A94111EC81CB50002874A /* UIImageView+EasyImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+EasyImage.h"; sourceTree = "<group>"; };
-		D54A94121EC81CB50002874A /* UIImageView+EasyImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+EasyImage.m"; sourceTree = "<group>"; };
 		D54A94241EC81E520002874A /* EasyBigFileDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyBigFileDownload.h; sourceTree = "<group>"; };
 		D54A94251EC81E520002874A /* EasyBigFileDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyBigFileDownload.m; sourceTree = "<group>"; };
 		D54A94261EC81E520002874A /* EasyDownloadProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyDownloadProtocol.h; sourceTree = "<group>"; };
@@ -110,7 +107,6 @@
 		D54A942E1EC81E520002874A /* EasyImageParas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyImageParas.m; sourceTree = "<group>"; };
 		D54A94341EC81EE70002874A /* NSObject+Dispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Dispatch.h"; sourceTree = "<group>"; };
 		D54A94351EC81EE70002874A /* NSObject+Dispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Dispatch.m"; sourceTree = "<group>"; };
-		D54A943A1EC822570002874A /* EasyImageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyImageProtocol.h; sourceTree = "<group>"; };
 		D54A943D1EC823670002874A /* EasyInnerImageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyInnerImageProtocol.h; sourceTree = "<group>"; };
 		D54A943E1EC830750002874A /* EasyConBigFileDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyConBigFileDownload.h; sourceTree = "<group>"; };
 		D54A943F1EC830750002874A /* EasyConBigFileDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyConBigFileDownload.m; sourceTree = "<group>"; };
@@ -120,6 +116,17 @@
 		D54A94CA1ECAE21D0002874A /* EasyFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyFileManager.m; sourceTree = "<group>"; };
 		D54A94CF1ECAE2610002874A /* NSFileManager+EasyPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+EasyPath.h"; sourceTree = "<group>"; };
 		D54A94D01ECAE2610002874A /* NSFileManager+EasyPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+EasyPath.m"; sourceTree = "<group>"; };
+		D54A94D31ECC447A0002874A /* EasyURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyURLCache.h; sourceTree = "<group>"; };
+		D54A94D41ECC447A0002874A /* EasyURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyURLCache.m; sourceTree = "<group>"; };
+		D54A94D61ECC4B0C0002874A /* EasyURLCacheDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyURLCacheDownload.h; sourceTree = "<group>"; };
+		D54A94D71ECC4B0C0002874A /* EasyURLCacheDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyURLCacheDownload.m; sourceTree = "<group>"; };
+		D54A94DA1ECC59750002874A /* EasyCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyCacheManager.h; sourceTree = "<group>"; };
+		D54A94DB1ECC59750002874A /* EasyCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyCacheManager.m; sourceTree = "<group>"; };
+		D54A94DC1ECC59750002874A /* EasyImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyImage.h; sourceTree = "<group>"; };
+		D54A94DD1ECC59750002874A /* EasyImageOwnershipProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyImageOwnershipProtocol.h; sourceTree = "<group>"; };
+		D54A94DE1ECC59750002874A /* EasyImageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyImageProtocol.h; sourceTree = "<group>"; };
+		D54A94DF1ECC59750002874A /* UIImageView+EasyImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+EasyImage.h"; sourceTree = "<group>"; };
+		D54A94E01ECC59750002874A /* UIImageView+EasyImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+EasyImage.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,13 +177,13 @@
 		D54A934F1EC560B00002874A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D54A94D91ECC59750002874A /* EasyImagePublic */,
 				D54A94C81ECAE21D0002874A /* EasyFile */,
 				D54A94231EC81E520002874A /* EasyImageDownload */,
 				D54A942B1EC81E520002874A /* EasyImageParaObject */,
 				D54A93E81EC81CB50002874A /* EasyNetAdditions */,
 				D54A93F01EC81CB50002874A /* EasyNetCache */,
 				D54A94021EC81CB50002874A /* EasyNetGCDQueue */,
-				D54A940C1EC81CB50002874A /* EasyNetPublic */,
 				D54A93531EC560B00002874A /* AppDelegate.h */,
 				D54A93541EC560B00002874A /* AppDelegate.m */,
 				D54A93A11EC586BB0002874A /* stream_loading.gif */,
@@ -246,6 +253,8 @@
 				D54A93F71EC81CB50002874A /* EasyMemoryCache.m */,
 				D54A93F81EC81CB50002874A /* EasyNonCache.h */,
 				D54A93F91EC81CB50002874A /* EasyNonCache.m */,
+				D54A94D31ECC447A0002874A /* EasyURLCache.h */,
+				D54A94D41ECC447A0002874A /* EasyURLCache.m */,
 			);
 			name = EasyNetCache;
 			path = ../../EasyNetCache;
@@ -264,20 +273,6 @@
 			path = ../../EasyNetGCDQueue;
 			sourceTree = "<group>";
 		};
-		D54A940C1EC81CB50002874A /* EasyNetPublic */ = {
-			isa = PBXGroup;
-			children = (
-				D54A940D1EC81CB50002874A /* EasyCacheManager.h */,
-				D54A940E1EC81CB50002874A /* EasyCacheManager.m */,
-				D54A940F1EC81CB50002874A /* EasyImage.h */,
-				D54A94111EC81CB50002874A /* UIImageView+EasyImage.h */,
-				D54A94121EC81CB50002874A /* UIImageView+EasyImage.m */,
-				D54A943A1EC822570002874A /* EasyImageProtocol.h */,
-			);
-			name = EasyNetPublic;
-			path = ../../EasyNetPublic;
-			sourceTree = "<group>";
-		};
 		D54A94231EC81E520002874A /* EasyImageDownload */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +287,8 @@
 				D54A94251EC81E520002874A /* EasyBigFileDownload.m */,
 				D54A943E1EC830750002874A /* EasyConBigFileDownload.h */,
 				D54A943F1EC830750002874A /* EasyConBigFileDownload.m */,
+				D54A94D61ECC4B0C0002874A /* EasyURLCacheDownload.h */,
+				D54A94D71ECC4B0C0002874A /* EasyURLCacheDownload.m */,
 			);
 			name = EasyImageDownload;
 			path = ../../EasyImageDownload;
@@ -318,6 +315,21 @@
 			);
 			name = EasyFile;
 			path = ../../EasyFile;
+			sourceTree = "<group>";
+		};
+		D54A94D91ECC59750002874A /* EasyImagePublic */ = {
+			isa = PBXGroup;
+			children = (
+				D54A94DA1ECC59750002874A /* EasyCacheManager.h */,
+				D54A94DB1ECC59750002874A /* EasyCacheManager.m */,
+				D54A94DC1ECC59750002874A /* EasyImage.h */,
+				D54A94DD1ECC59750002874A /* EasyImageOwnershipProtocol.h */,
+				D54A94DE1ECC59750002874A /* EasyImageProtocol.h */,
+				D54A94DF1ECC59750002874A /* UIImageView+EasyImage.h */,
+				D54A94E01ECC59750002874A /* UIImageView+EasyImage.m */,
+			);
+			name = EasyImagePublic;
+			path = ../../EasyImagePublic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,7 +399,8 @@
 				TargetAttributes = {
 					D54A934C1EC560B00002874A = {
 						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 3959GA2BH8;
+						ProvisioningStyle = Manual;
 					};
 					D54A93651EC560B00002874A = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -457,14 +470,14 @@
 				D54A94311EC81E520002874A /* EasyProgress.m in Sources */,
 				D54A941E1EC81CB50002874A /* EasyConQueueManager.m in Sources */,
 				D54A93581EC560B00002874A /* ViewController.m in Sources */,
+				D54A94D81ECC4B0C0002874A /* EasyURLCacheDownload.m in Sources */,
 				D54A94301EC81E520002874A /* EasyBigFileDownload.m in Sources */,
 				D54A93551EC560B00002874A /* AppDelegate.m in Sources */,
 				D54A94161EC81CB50002874A /* UIImage+Transform.m in Sources */,
 				D54A94181EC81CB50002874A /* EasyDiskCache.m in Sources */,
 				D54A93521EC560B00002874A /* main.m in Sources */,
-				D54A94211EC81CB50002874A /* EasyCacheManager.m in Sources */,
+				D54A94E21ECC59750002874A /* UIImageView+EasyImage.m in Sources */,
 				D54A94D11ECAE2610002874A /* NSFileManager+EasyPath.m in Sources */,
-				D54A94221EC81CB50002874A /* UIImageView+EasyImage.m in Sources */,
 				D54A941F1EC81CB50002874A /* EasySerialQueueManager.m in Sources */,
 				D54A94CD1ECAE21D0002874A /* EasyFileManager.m in Sources */,
 				D54A94331EC81E520002874A /* EasyImageParas.m in Sources */,
@@ -472,10 +485,12 @@
 				D54A94141EC81CB50002874A /* UIImage+EasyImage.m in Sources */,
 				D54A94321EC81E520002874A /* EasyTinyFileDownload.m in Sources */,
 				D54A94191EC81CB50002874A /* EasyMemoryCache.m in Sources */,
+				D54A94D51ECC447A0002874A /* EasyURLCache.m in Sources */,
 				D54A94431EC831670002874A /* EasyDownloader.m in Sources */,
 				D54A941A1EC81CB50002874A /* EasyNonCache.m in Sources */,
 				D54A94171EC81CB50002874A /* EasyBothCache.m in Sources */,
 				D54A94361EC81EE70002874A /* NSObject+Dispatch.m in Sources */,
+				D54A94E11ECC59750002874A /* EasyCacheManager.m in Sources */,
 				D54A94401EC830750002874A /* EasyConBigFileDownload.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -552,7 +567,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -571,7 +586,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -599,7 +614,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -612,7 +627,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -623,10 +638,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3959GA2BH8;
 				INFOPLIST_FILE = Images/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = DuduWang.Images;
+				PRODUCT_BUNDLE_IDENTIFIER = yunpai.bf.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "57429892-f3e4-4cd8-9cab-cd93573f3010";
+				PROVISIONING_PROFILE_SPECIFIER = ypdevpro;
 			};
 			name = Debug;
 		};
@@ -634,10 +653,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3959GA2BH8;
 				INFOPLIST_FILE = Images/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = DuduWang.Images;
+				PRODUCT_BUNDLE_IDENTIFIER = yunpai.bf.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "57429892-f3e4-4cd8-9cab-cd93573f3010";
+				PROVISIONING_PROFILE_SPECIFIER = ypdevpro;
 			};
 			name = Release;
 		};

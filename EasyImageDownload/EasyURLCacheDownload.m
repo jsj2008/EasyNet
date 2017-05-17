@@ -1,13 +1,12 @@
 //
-//  EasyTinyFileDownload.m
+//  EasyURLCacheDownload.m
 //  Images
 //
-//  Created by wangjufan on 12/5/2017.
+//  Created by wangjufan on 17/5/2017.
 //  Copyright © 2017 DuduWang. All rights reserved.
 //
 
-#import "EasyTinyFileDownload.h"
-
+#import "EasyURLCacheDownload.h"
 
 #import "NSObject+Dispatch.h"
 #import "EasyQueueProtocol.h"
@@ -19,22 +18,22 @@
 
 #import "EasyImageOwnershipProtocol.h"
 
+#import "EasyURLCache.h"
 
-@interface EasyTinyFileDownload() 
+@interface EasyURLCacheDownload()
 
 @property (nonatomic, strong) NSURLSession * urlSession;
 
+@property (nonatomic, strong) NSURLCache * urlCache;
 
 @end
 
-@implementation EasyTinyFileDownload
-
+@implementation EasyURLCacheDownload
 
 @synthesize queueManager = _queueManager;
 
 @synthesize memoryCacheMode = _memoryCacheMode;
 @synthesize diskCacheMode = _diskCacheMode;
-@synthesize timeoutInterval = _timeoutInterval;
 
 -(void) setQueueManager:(id<EasyQueueProtocol>)queueManager{
     _queueManager = queueManager;
@@ -43,16 +42,20 @@
 -(instancetype) init{
     if (self = [super init]) {
         _memoryCacheMode = NO;
-        _timeoutInterval = 60;
+        _urlCache = [EasyURLCache easyURLCache];
     }
     return self;
 }
 
-
 -(void) removeCaches{
+    [_urlCache removeAllCachedResponses];
 }
 -(void) removeCacheForURL:(NSString *) urls{
-  
+    NSURL * url = [NSURL URLWithString:urls];
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
+    [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
+    request.cachePolicy = NSURLRequestUseProtocolCachePolicy;
+    [_urlCache removeCachedResponseForRequest:request];
 }
 
 -(NSURLSession *) urlSession{
@@ -61,6 +64,7 @@
             if (!_urlSession) {
                 NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
                 configuration.requestCachePolicy = NSURLRequestUseProtocolCachePolicy;
+                configuration.URLCache = _urlCache;
                 _urlSession = [NSURLSession sessionWithConfiguration:configuration
                                                             delegate:nil
                                                        delegateQueue:nil];
@@ -79,10 +83,21 @@
         NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
         [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
         request.cachePolicy = NSURLRequestUseProtocolCachePolicy;
-        request.timeoutInterval = wself.timeoutInterval;
- 
+        request.timeoutInterval = 100;
+        
+        NSCachedURLResponse * cacheRespones = [_urlCache cachedResponseForRequest:request];
+        if (cacheRespones) {
+            UIImage * image = [UIImage imageWithData:cacheRespones.data];
+            [image easyDispatchOnMain:^{
+                paras.owner.image = image;
+                if (paras.successBlock) {
+                    paras.successBlock(paras);
+                }
+            }];
+            return ;
+        }
         NSURLSessionDataTask * dataTask = [wself.urlSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            [paras.cacher  deletableCache:para.url  data:data];
+            
             UIImage * image = [UIImage imageWithData:data];
             if (paras.url) {
                 if (error) {
@@ -116,4 +131,3 @@
 }
 
 @end
-

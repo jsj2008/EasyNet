@@ -25,10 +25,10 @@
 -(const id<EasyCachePolicyProtocol>) getUserCachePolicy;
 
 //cache
--(const id<EasyCacheProtocol>) getEasyNonCache;
--(const id<EasyCacheProtocol>) getEasyMemoryCache;
--(const id<EasyCacheProtocol>) getEasyDiskCache;
--(const id<EasyCacheProtocol>) getEasyBontCache;
+-(const id<EasyCacheProtocol>) getNoneCache;
+-(const id<EasyCacheProtocol>) getMemoryCache;
+-(const id<EasyCacheProtocol>) getDiskCache;
+-(const id<EasyCacheProtocol>) getBothCache;
 ///down loader
 -(const id<EasyDownloadProtocol>) getTinyFileDownloader;
 -(const id<EasyDownloadProtocol>) getBigFileDownloader;

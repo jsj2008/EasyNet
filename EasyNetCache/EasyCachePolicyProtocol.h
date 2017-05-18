@@ -10,6 +10,8 @@
 #define EasyCachePolicyProtocol_h
 
 
+@protocol EasyCacheProtocol;
+
 
 @protocol EasyCachePolicyProtocol <NSObject>
 
@@ -21,6 +23,9 @@
 @property (nonatomic, assign) long long diskCacheSize;
 
 @property (nonatomic, copy, readonly) NSString * cachePath;
+
+
+-(void) addCacher:(id<EasyCacheProtocol>) cacher;
 
 @end
 

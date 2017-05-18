@@ -18,7 +18,19 @@
     return [[self alloc] initWithMemoryCapacity:memoryCapacity diskCapacity:diskCapacity diskPath:path];
 }
 
+-(void) clearMemoryCache{
+    [self removeAllCachedResponses];
+}
+
+-(void) clearDiskCache{
+    [self removeAllCachedResponses];
+}
+
+-(void) shrinkDiskCache{
+    [self removeAllCachedResponses];
+}
 
 @end
+
 
 

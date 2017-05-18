@@ -15,6 +15,11 @@
 
 @protocol EasyCacheProtocol <NSObject>
 
+
+-(void) clearMemoryCache;
+-(void) clearDiskCache;
+-(void) shrinkDiskCache;
+
 @optional
 - (NSData *) dataForUrl:(NSString *)url;
 - (NSData *) dataForUrl:(NSString *)url withLength:(NSInteger) length fromPosition:(long long) position;

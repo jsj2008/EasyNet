@@ -13,7 +13,12 @@
 #define EasyURLCache_MemorySize 1024*1024*10
 #define EasyURLCache_DiskSize 1024*1024*100
 
+@interface EasyURLCachePolicy()
+@property (nonatomic, strong) NSMutableArray<id<EasyCacheProtocol>> *cachers;
+@end
+
 @implementation EasyURLCachePolicy
+
 
 @synthesize cachePath = _cachePath;
 @synthesize memoryCacheSize = _memoryCacheSize;
@@ -24,8 +29,13 @@
         _memoryCacheSize = EasyURLCache_MemorySize;
         _diskCacheSize = EasyURLCache_DiskSize;
         _cachePath = EasyURLCache_Path;
+        _cachers = [NSMutableArray new];
     }
     return self;
+}
+
+-(void) addCacher:(id<EasyCacheProtocol>)cacher{
+    [_cachers addObject:cacher];
 }
 
 +(NSString *) cacheRootPath{

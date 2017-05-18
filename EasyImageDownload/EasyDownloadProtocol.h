@@ -29,9 +29,6 @@
 - (void) easyDownload:(id<EasyImageProtocol>) paras;
 - (void) easyCancel:(id<EasyImageProtocol>) paras;
 
--(void) removeCaches;
--(void) removeCacheForURL:(NSString *) url;
-
 
 @end
 

@@ -12,8 +12,12 @@
 #define EasyUserCache_MemorySize 1024*1024*10
 #define EasyUserCache_Path @"/easy.usercache.path"
 
+@interface EasyUserCachePolicy()
+@property (nonatomic, strong) NSMutableArray<id<EasyCacheProtocol>> *cachers;
+@end
 
 @implementation EasyUserCachePolicy
+
 
 @synthesize cachePath = _cachePath;
 @synthesize memoryCacheSize = _memoryCacheSize;
@@ -24,8 +28,16 @@
         _memoryCacheSize = EasyUserCache_MemorySize;
         _diskCacheSize = EasyUserCache_DiskSize;
         _cachePath = EasyUserCache_Path;
+        _cachers = [NSMutableArray new];
     }
     return self;
+}
+
+
+-(void) addCacher:(id<EasyCacheProtocol>)cacher{
+    @synchronized (_cachers) {
+        [_cachers addObject:cacher];
+    }
 }
 
 +(NSString *) cacheRootPath{
@@ -33,7 +45,11 @@
 }
 
 -(void) didReceiveMemoryWarning:(NSNotification *) notification{
-    
+    @synchronized (_cachers) {
+        for (id<EasyCacheProtocol> cacher in _cachers) {
+
+        }
+    }
 }
 
 -(void) applicationWillTerminate:(NSNotification *) notification{

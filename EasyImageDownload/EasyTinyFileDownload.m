@@ -45,11 +45,6 @@
 }
 
 
--(void) removeCaches{
-}
--(void) removeCacheForURL:(NSString *) urls{
-  
-}
 
 -(NSURLSession *) urlSession{
     if (_urlSession == nil) {

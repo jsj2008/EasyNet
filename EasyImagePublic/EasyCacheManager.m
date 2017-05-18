@@ -90,16 +90,17 @@
         if (_tinyFileDownload == nil) {
             _tinyFileDownload = [EasyTinyFileDownload new];
             _tinyFileDownload.queueManager = [EasyConQueueManager shareEasyQueueManager];
+            [_tinyFileDownload setCachePolicy:[self getUserCachePolicy]];
         }
         return _tinyFileDownload;
     }
 }
 -(id<EasyDownloadProtocol>) getBigFileDownloader{
     @synchronized (self) {
-        
         if (_bigFileDownload == nil) {
             _bigFileDownload = [EasyBigFileDownload new];
             _bigFileDownload.queueManager = [EasySerialQueueManager shareEasyQueueManager];
+            [_bigFileDownload setCachePolicy:[self getUserCachePolicy]];
         }
         return _bigFileDownload;
     }
@@ -109,6 +110,7 @@
         if (_conbigFileDownload == nil) {
             _conbigFileDownload = [EasyConBigFileDownload new];
             _conbigFileDownload.queueManager = [EasyConQueueManager shareEasyQueueManager];
+            [_conbigFileDownload setCachePolicy:[self getUserCachePolicy]];
         }
         return _conbigFileDownload;
     }
@@ -119,6 +121,7 @@
         if (_urlCahceDownload == nil) {
             _urlCahceDownload = [EasyURLCacheDownload new];
             _urlCahceDownload.queueManager = [EasyConQueueManager shareEasyQueueManager];
+            [_urlCahceDownload setCachePolicy:[self getURLCachePolicy]];
         }
         return _urlCahceDownload;
     }
@@ -127,25 +130,25 @@
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
--(id<EasyCacheProtocol>) getEasyNonCache{
+-(id<EasyCacheProtocol>) getNoneCache{
     if (_nonCache == nil) {
         _nonCache = [EasyNonCache new];
     }
     return _nonCache;
 }
--(id<EasyCacheProtocol>) getEasyMemoryCache{
+-(id<EasyCacheProtocol>) getMemoryCache{
     if (_memoryCache == nil) {
         _memoryCache = [EasyMemoryCache new];
     }
     return _memoryCache;
 }
--(id<EasyCacheProtocol>) getEasyDiskCache{
+-(id<EasyCacheProtocol>) getDiskCache{
     if (_diskCache == nil) {
         _diskCache = [[EasyDiskCache alloc] initWithDirectory:[EasyUserCachePolicy cacheRootPath]];
     }
     return _diskCache;
 }
--(id<EasyCacheProtocol>) getEasyBontCache{
+-(id<EasyCacheProtocol>) getBothCache{
     if (_bothCache == nil) {
         _bothCache = [EasyBothCache new];
     }

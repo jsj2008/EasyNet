@@ -110,7 +110,7 @@
             
             id<EasyImageProtocol> para = [manager createEasyImageParas];
             para.url = key;
-            para.cacher = [manager getEasyDiskCache];
+            para.cacher = [manager getDiskCache];
             para.autoCancel = YES;
             
             para.failedBlock  = ^(id<EasyImageProtocol>_Nullable para,NSError* _Nullable error){
@@ -127,7 +127,7 @@
             //                NSLog(@"==========%.2f=============", ratio);
             //            };
             
-                        para.downloader = [manager getTinyFileDownloader];
+                        para.downloader = [manager getEasyURLCacheDownloader];
                          para.owner = wself.imageView;
                         [wself.imageView easyImageCancel];
                         [wself.imageView   easyImageWithPara:para];

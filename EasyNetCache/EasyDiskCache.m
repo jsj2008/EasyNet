@@ -19,6 +19,7 @@
 
 @interface EasyDiskCache()
 @property (nonatomic, strong) EasyFileManager * easyFileManager;
+@property (nonatomic, copy) NSString * directory;
 @end
 
 
@@ -26,24 +27,37 @@
 
 
 +(void) load{
-    [EasyFileManager createCacheDirectory:EasyUserCache_Path];
+    
+}
+
++(void) initialize{
+    
+}
+
+-(instancetype) initWithDirectory:(NSString *) directory{
+    if (self = [super init]) {
+        _directory= [directory copy];
+        [EasyFileManager createCacheDirectory:_directory];
+        _easyFileManager = [EasyFileManager new];
+    }
+    return self;
 }
 
 -(instancetype) init{
-    if (self = [super init]) {
-        _easyFileManager = [EasyFileManager new];
+    if(self = [self initWithDirectory:nil]){
+        NSAssert(0, @"replaced by initWithDirectory: !");
     }
     return self;
 }
 
 -(void) willStartAppendCache:(NSString *) url{
     NSString * shortPath = [self categorizingAndShorteningName:url];
-    shortPath = [ EasyUserCache_Path stringByAppendingString:shortPath];
+    shortPath = [ _directory stringByAppendingString:shortPath];
     [self.easyFileManager deleteCacheFile:shortPath];
 }
 -(void) appendCache:(NSString *) url data:(NSData *) data{
     NSString * shortPath = [self categorizingAndShorteningName:url];
-    shortPath = [ EasyUserCache_Path stringByAppendingString:shortPath];
+    shortPath = [ _directory stringByAppendingString:shortPath];
     [self.easyFileManager appendCache:data withFileName:shortPath];
 }
 
@@ -55,7 +69,7 @@
         return;
     }
     NSString * shortPath = [self categorizingAndShorteningName:url];
-    shortPath = [ EasyUserCache_Path stringByAppendingString:shortPath];
+    shortPath = [ _directory stringByAppendingString:shortPath];
     [self.easyFileManager writeCache:data withFileName:shortPath];
 }
 
@@ -78,7 +92,7 @@
 
 - (NSData *) dataForUrl:(NSString *)url {
     NSString * shortPath = [self categorizingAndShorteningName:url];
-    shortPath = [ EasyUserCache_Path stringByAppendingString:shortPath];
+    shortPath = [ _directory stringByAppendingString:shortPath];
     NSData *data = [self.easyFileManager readCache:shortPath];
     return data;
 }

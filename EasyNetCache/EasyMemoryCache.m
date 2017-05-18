@@ -9,6 +9,7 @@
 #import "EasyMemoryCache.h"
 #import "EasyCachePolicy.h"
 
+
 @interface EasyMemoryCache() {
     NSCache * _memoryCacher;
 }

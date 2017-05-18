@@ -87,7 +87,6 @@
 /////////////////////////////////////////////////////////////////////
 -(id<EasyDownloadProtocol>) getTinyFileDownloader{
     @synchronized (self) {
-        
         if (_tinyFileDownload == nil) {
             _tinyFileDownload = [EasyTinyFileDownload new];
             _tinyFileDownload.queueManager = [EasyConQueueManager shareEasyQueueManager];
@@ -142,7 +141,7 @@
 }
 -(id<EasyCacheProtocol>) getEasyDiskCache{
     if (_diskCache == nil) {
-        _diskCache = [EasyDiskCache new];
+        _diskCache = [[EasyDiskCache alloc] initWithDirectory:[EasyUserCachePolicy cacheRootPath]];
     }
     return _diskCache;
 }

@@ -15,6 +15,7 @@
 
 @interface EasyDiskCache : NSObject<EasyCacheProtocol>
 
+-(instancetype) initWithDirectory:(NSString *) directory NS_DESIGNATED_INITIALIZER;
 
 @end
 

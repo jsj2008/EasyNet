@@ -8,6 +8,10 @@
 
 #import "EasyUserCachePolicy.h"
 
+#define EasyUserCache_DiskSize 1024*1024*100
+#define EasyUserCache_MemorySize 1024*1024*10
+#define EasyUserCache_Path @"/easy.usercache.path"
+
 
 @implementation EasyUserCachePolicy
 
@@ -24,6 +28,9 @@
     return self;
 }
 
++(NSString *) cacheRootPath{
+    return EasyUserCache_Path;
+}
 
 -(void) didReceiveMemoryWarning:(NSNotification *) notification{
     
@@ -38,3 +45,4 @@
 }
 
 @end
+

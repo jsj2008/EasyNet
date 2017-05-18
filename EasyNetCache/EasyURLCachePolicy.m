@@ -28,6 +28,9 @@
     return self;
 }
 
++(NSString *) cacheRootPath{
+    return EasyURLCache_Path;
+}
 
 -(void) didReceiveMemoryWarning:(NSNotification *) notification{
     

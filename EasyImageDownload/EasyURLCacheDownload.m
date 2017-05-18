@@ -16,14 +16,17 @@
 
 #import "EasyCacheProtocol.h"
 
+#import "EasyCachePolicyProtocol.h"
+
 #import "EasyImageOwnershipProtocol.h"
 
 #import "EasyURLCache.h"
 
+#import "EasyCacheManager.h"
+
 @interface EasyURLCacheDownload()
 
 @property (nonatomic, strong) NSURLSession * urlSession;
-
 @property (nonatomic, strong) NSURLCache * urlCache;
 
 @end
@@ -31,9 +34,10 @@
 @implementation EasyURLCacheDownload
 
 @synthesize queueManager = _queueManager;
+@synthesize timeoutInterval = _timeoutInterval;
 
-@synthesize memoryCacheMode = _memoryCacheMode;
-@synthesize diskCacheMode = _diskCacheMode;
+@synthesize cachePolicy = _cachePolicy;
+
 
 -(void) setQueueManager:(id<EasyQueueProtocol>)queueManager{
     _queueManager = queueManager;
@@ -41,11 +45,18 @@
 
 -(instancetype) init{
     if (self = [super init]) {
-        _memoryCacheMode = NO;
-        _urlCache = [EasyURLCache easyURLCache];
+        _timeoutInterval = 60;
+        
     }
     return self;
 }
+
+-(void) setCachePolicy:(id<EasyCachePolicyProtocol>)cachePolicy{
+    NSAssert(_cachePolicy == nil, @"_cachePolicy can only be assigned once !");
+    _cachePolicy = cachePolicy;
+    _urlCache = [EasyURLCache easyURLCacheWithMemoryCapacity:_cachePolicy.memoryCacheSize diskCapacity:_cachePolicy.diskCacheSize diskPath:_cachePolicy.cachePath];
+}
+
 
 -(void) removeCaches{
     [_urlCache removeAllCachedResponses];
@@ -83,7 +94,7 @@
         NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
         [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
         request.cachePolicy = NSURLRequestUseProtocolCachePolicy;
-        request.timeoutInterval = 100;
+        request.timeoutInterval = wself.timeoutInterval;
         
         NSCachedURLResponse * cacheRespones = [_urlCache cachedResponseForRequest:request];
         if (cacheRespones) {
@@ -125,8 +136,8 @@
     id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
     [paras.sessionTask cancel];
     EasyLog(paras);
-    if (paras.failedBlock) {
-        paras.failedBlock(paras, nil);
+    if (paras.cancelBlock) {
+        paras.cancelBlock(paras);
     }
 }
 

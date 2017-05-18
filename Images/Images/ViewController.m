@@ -127,10 +127,9 @@
             //                NSLog(@"==========%.2f=============", ratio);
             //            };
             
-                        para.downloader = [manager getEasyURLCacheDownloader];
-//                        para.owner = [imageviewS objectAtIndex:i];
+                        para.downloader = [manager getTinyFileDownloader];
                          para.owner = wself.imageView;
-            [wself.imageView easyImageCancel];
+                        [wself.imageView easyImageCancel];
                         [wself.imageView   easyImageWithPara:para];
             
             //            para.downloader = [manager getBigFileDownloader];

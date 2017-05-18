@@ -10,6 +10,7 @@
 
 
 #import "EasyCacheProtocol.h"
+@class EasyCachePolicy;
 
 
 @interface EasyDiskCache : NSObject<EasyCacheProtocol>

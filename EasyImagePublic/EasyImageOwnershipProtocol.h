@@ -12,7 +12,8 @@
 
 @protocol EasyImageOwnershipProtocol <NSObject>
 
-@property (nullable, nonatomic, strong) UIImage *image;
+@property (nullable, nonatomic, strong) UIImage * image;
+@property (nullable, nonatomic, strong) NSData * data;
 
 @end
 

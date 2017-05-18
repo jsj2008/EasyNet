@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol EasyImageOwnershipProtocol;
+
 @interface ViewController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UIImageView * imageView;
+@property (nonatomic, weak) IBOutlet UIImageView<EasyImageOwnershipProtocol> * imageView;
 
 @end
 

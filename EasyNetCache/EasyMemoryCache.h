@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "EasyCacheProtocol.h"
+@class EasyCachePolicy;
 
 @interface EasyMemoryCache : NSObject<EasyCacheProtocol>
 

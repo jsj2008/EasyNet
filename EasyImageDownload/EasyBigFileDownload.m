@@ -57,7 +57,6 @@
                 _urlSession = [NSURLSession sessionWithConfiguration:configuration
                                                             delegate:self
                                                        delegateQueue:nil];
-                
             }
         }
     }

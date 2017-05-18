@@ -9,20 +9,15 @@
 #import <Foundation/Foundation.h>
 
 
-#define EasyURLCache_MemoryCache 1024*1024*10
-#define EasyURLCache_DiskCache 1024*1024*100
-#define EasyURLCache_DefaultPath @"easy.url.image"
-
 @protocol EasyCacheProtocol;
+@class EasyCachePolicy;
 
 
 @interface EasyURLCache : NSURLCache<EasyCacheProtocol>
 
-//@property (nonatomic, readonly, strong, nonnull) NSURLCache * urlCache;
+//NS_DESIGNATED_INITIALIZER;
 
-//-(instancetype) initWithMemoryCapacity:(NSUInteger)memoryCapacity diskCapacity:(NSUInteger)diskCapacity diskPath:(nullable NSString *)path NS_DESIGNATED_INITIALIZER;
-
-+(instancetype) easyURLCache;
++(instancetype) easyURLCacheWithMemoryCapacity:(NSUInteger)memoryCapacity diskCapacity:(NSUInteger)diskCapacity diskPath:(nullable NSString *)path;
 
 @end
 

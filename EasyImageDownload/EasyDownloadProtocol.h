@@ -16,21 +16,22 @@
 #import "EasyQueueProtocol.h"
 
 @protocol EasyImageProtocol;
+@protocol EasyCachePolicyProtocol;
+
 
 @protocol EasyDownloadProtocol <NSObject>
 
+@property (nonatomic, strong) id<EasyQueueProtocol> queueManager;
 
+@property (nonatomic, strong) id<EasyCachePolicyProtocol> cachePolicy;
+
+@property (nonatomic, assign) NSInteger timeoutInterval;
 - (void) easyDownload:(id<EasyImageProtocol>) paras;
 - (void) easyCancel:(id<EasyImageProtocol>) paras;
 
 -(void) removeCaches;
 -(void) removeCacheForURL:(NSString *) url;
 
-@property (nonatomic, strong) id<EasyQueueProtocol> queueManager;
-
-@property (nonatomic, assign) BOOL memoryCacheMode;
-@property (nonatomic, assign) BOOL diskCacheMode;
-@property (nonatomic, assign) NSInteger timeoutInterval;
 
 @end
 

@@ -8,6 +8,7 @@
 
 #import "EasyCacheManager.h"
 
+#import "EasyLog.h"
 
 #import "EasyTinyFileDownload.h"
 #import "EasyBigFileDownload.h"
@@ -25,8 +26,11 @@
 #import "EasyConBigFileDownload.h"
 
 
-
 #import "EasyURLCacheDownload.h"
+
+
+#import "EasyURLCachePolicy.h"
+#import "EasyUserCachePolicy.h"
 
 @interface EasyCacheManager(){
     NSMutableArray * _easyImageParasCache;
@@ -41,6 +45,9 @@
     EasyConBigFileDownload * _conbigFileDownload;
     
     EasyURLCacheDownload * _urlCahceDownload;
+    
+    id<EasyCachePolicyProtocol> _urlCachePolicy;
+    id<EasyCachePolicyProtocol> _userCachePolicy;
 }
 
 @end
@@ -57,12 +64,24 @@
 
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
--(void) setMemoryCacheSpaceSizeOfMBits:(NSInteger) size{
-    
+
+-(id<EasyCachePolicyProtocol>) getURLCachePolicy{
+    @synchronized (self) {
+        if (_urlCachePolicy == nil) {
+            _urlCachePolicy = [EasyURLCachePolicy new];
+        }
+        return _urlCachePolicy;
+    }
 }
--(void) setDiskCacheSpaceSizeOfMBits:(NSInteger) size{
-    
+-(id<EasyCachePolicyProtocol>) getUserCachePolicy{
+    @synchronized (self) {
+        if (_userCachePolicy == nil) {
+            _userCachePolicy = [EasyUserCachePolicy new];
+        }
+        return _userCachePolicy;
+    }
 }
+
 
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
@@ -146,7 +165,7 @@
     if (para == nil) {
         para = [[EasyImageParas alloc] init];
     }
-    NSLog(@"%@", para);
+    EasyLog(para);
     return para;
 }
 

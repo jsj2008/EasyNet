@@ -8,24 +8,15 @@
 
 #import "EasyURLCache.h"
 
+#import "EasyCachePolicy.h"
+
 
 @implementation EasyURLCache
 
 
-+(instancetype) easyURLCache{
-    return [[self alloc] initWithMemoryCapacity:EasyURLCache_MemoryCache diskCapacity:EasyURLCache_DiskCache diskPath:EasyURLCache_DefaultPath];
++(instancetype) easyURLCacheWithMemoryCapacity:(NSUInteger)memoryCapacity diskCapacity:(NSUInteger)diskCapacity diskPath:(nullable NSString *)path{
+    return [[self alloc] initWithMemoryCapacity:memoryCapacity diskCapacity:diskCapacity diskPath:path];
 }
-
-
-//-(instancetype) initWithMemoryCapacity:(NSUInteger)memoryCapacity
-//                          diskCapacity:(NSUInteger)diskCapacity
-//                              diskPath:(nullable NSString *)path{
-//    if (self = [super init]) {
-//        _urlCache = [[NSURLCache alloc] initWithMemoryCapacity:memoryCapacity diskCapacity:diskCapacity diskPath:path];
-//    }
-//    return self;
-//}
-
 
 
 @end

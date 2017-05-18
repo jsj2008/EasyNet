@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 
 #import "EasyCacheProtocol.h"
+@class EasyCachePolicy;
 
 
 @interface EasyBothCache : NSObject<EasyCacheProtocol>
 
-
 @end
+

@@ -14,8 +14,7 @@
 #import "EasyFileManager.h"
 
 #import "EasyLog.h"
-
-#define EasyDiskCache_Root @"/EasyDiskCacheRoot"
+#import "EasyCachePolicy.h"
 
 
 @interface EasyDiskCache()
@@ -25,8 +24,9 @@
 
 @implementation EasyDiskCache
 
+
 +(void) load{
-    [EasyFileManager createCacheDirectory:EasyDiskCache_Root];
+    [EasyFileManager createCacheDirectory:EasyUserCache_Path];
 }
 
 -(instancetype) init{
@@ -38,12 +38,12 @@
 
 -(void) willStartAppendCache:(NSString *) url{
     NSString * shortPath = [self categorizingAndShorteningName:url];
-    shortPath = [ EasyDiskCache_Root stringByAppendingString:shortPath];
+    shortPath = [ EasyUserCache_Path stringByAppendingString:shortPath];
     [self.easyFileManager deleteCacheFile:shortPath];
 }
 -(void) appendCache:(NSString *) url data:(NSData *) data{
     NSString * shortPath = [self categorizingAndShorteningName:url];
-    shortPath = [ EasyDiskCache_Root stringByAppendingString:shortPath];
+    shortPath = [ EasyUserCache_Path stringByAppendingString:shortPath];
     [self.easyFileManager appendCache:data withFileName:shortPath];
 }
 
@@ -55,7 +55,7 @@
         return;
     }
     NSString * shortPath = [self categorizingAndShorteningName:url];
-    shortPath = [ EasyDiskCache_Root stringByAppendingString:shortPath];
+    shortPath = [ EasyUserCache_Path stringByAppendingString:shortPath];
     [self.easyFileManager writeCache:data withFileName:shortPath];
 }
 
@@ -70,18 +70,15 @@
     NSString *cacheKey = [NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
                           result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
                           result[8], result[9], result[10], result[11],result[12], result[13], result[14], result[15]];
-//    NSString *prefix = [cacheKey substringToIndex:2];
-//    prefix = [NSString stringWithFormat:@"%@", prefix];
-//    shortPath = [shortPath stringByAppendingPathComponent:prefix];
     shortPath = [shortPath stringByAppendingPathComponent:cacheKey];
-    shortPath = [shortPath stringByAppendingString:@".jpg"];
+//    shortPath = [shortPath stringByAppendingString:@""];
     return shortPath;
 }
 
 
 - (NSData *) dataForUrl:(NSString *)url {
     NSString * shortPath = [self categorizingAndShorteningName:url];
-    shortPath = [ EasyDiskCache_Root stringByAppendingString:shortPath];
+    shortPath = [ EasyUserCache_Path stringByAppendingString:shortPath];
     NSData *data = [self.easyFileManager readCache:shortPath];
     return data;
 }

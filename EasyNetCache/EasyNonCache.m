@@ -7,6 +7,7 @@
 //
 
 #import "EasyNonCache.h"
+#import "EasyCachePolicy.h"
 
 @implementation EasyNonCache
 

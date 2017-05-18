@@ -12,30 +12,34 @@
 @protocol EasyDownloadProtocol;
 @protocol EasyCacheProtocol;
 @protocol EasyImageProtocol;
+@protocol EasyCachePolicyProtocol;
 
 
+@class EasyCachePolicy;
 
 
 @interface EasyCacheManager : NSObject
 
--(void) setMemoryCacheSpaceSizeOfMBits:(NSInteger) size;
--(void) setDiskCacheSpaceSizeOfMBits:(NSInteger) size;
+
+-(const id<EasyCachePolicyProtocol>) getURLCachePolicy;
+-(const id<EasyCachePolicyProtocol>) getUserCachePolicy;
+
 //cache
--(id<EasyCacheProtocol>) getEasyNonCache;
--(id<EasyCacheProtocol>) getEasyMemoryCache;
--(id<EasyCacheProtocol>) getEasyDiskCache;
--(id<EasyCacheProtocol>) getEasyBontCache;
+-(const id<EasyCacheProtocol>) getEasyNonCache;
+-(const id<EasyCacheProtocol>) getEasyMemoryCache;
+-(const id<EasyCacheProtocol>) getEasyDiskCache;
+-(const id<EasyCacheProtocol>) getEasyBontCache;
 ///down loader
--(id<EasyDownloadProtocol>) getTinyFileDownloader;
--(id<EasyDownloadProtocol>) getBigFileDownloader;
--(id<EasyDownloadProtocol>) getConBigFileDownloader;
+-(const id<EasyDownloadProtocol>) getTinyFileDownloader;
+-(const id<EasyDownloadProtocol>) getBigFileDownloader;
+-(const id<EasyDownloadProtocol>) getConBigFileDownloader;
 
 /***********************************************************
    Cache without compress .
    If this downloader was used, the id<EasyCacheProtocol> is useless 
       and you can just leaves it nil in the para object.
  ***********************************************************/
--(id<EasyDownloadProtocol>) getEasyURLCacheDownloader;
+-(const id<EasyDownloadProtocol>) getEasyURLCacheDownloader;
 
 //paras
 @property (nonatomic, assign) NSInteger easyParasCount;

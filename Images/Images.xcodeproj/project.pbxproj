@@ -15,7 +15,6 @@
 		D54A93601EC560B00002874A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54A935E1EC560B00002874A /* LaunchScreen.storyboard */; };
 		D54A936B1EC560B00002874A /* ImagesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A936A1EC560B00002874A /* ImagesTests.m */; };
 		D54A93761EC560B00002874A /* ImagesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93751EC560B00002874A /* ImagesUITests.m */; };
-		D54A93A21EC586BB0002874A /* stream_loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = D54A93A11EC586BB0002874A /* stream_loading.gif */; };
 		D54A94141EC81CB50002874A /* UIImage+EasyImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93EB1EC81CB50002874A /* UIImage+EasyImage.m */; };
 		D54A94151EC81CB50002874A /* UIImage+Header.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93ED1EC81CB50002874A /* UIImage+Header.m */; };
 		D54A94161EC81CB50002874A /* UIImage+Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A93EF1EC81CB50002874A /* UIImage+Transform.m */; };
@@ -38,6 +37,9 @@
 		D54A94D81ECC4B0C0002874A /* EasyURLCacheDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94D71ECC4B0C0002874A /* EasyURLCacheDownload.m */; };
 		D54A94E11ECC59750002874A /* EasyCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94DB1ECC59750002874A /* EasyCacheManager.m */; };
 		D54A94E21ECC59750002874A /* UIImageView+EasyImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94E01ECC59750002874A /* UIImageView+EasyImage.m */; };
+		D54A94E51ECD2F4C0002874A /* EasyCachePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94E41ECD2F4C0002874A /* EasyCachePolicy.m */; };
+		D54A94E91ECD3FD80002874A /* EasyURLCachePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94E81ECD3FD80002874A /* EasyURLCachePolicy.m */; };
+		D54A94EC1ECD407B0002874A /* EasyUserCachePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = D54A94EB1ECD407B0002874A /* EasyUserCachePolicy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,7 +76,6 @@
 		D54A93711EC560B00002874A /* ImagesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImagesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54A93751EC560B00002874A /* ImagesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagesUITests.m; sourceTree = "<group>"; };
 		D54A93771EC560B00002874A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D54A93A11EC586BB0002874A /* stream_loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = stream_loading.gif; path = ../../../stream_loading.gif; sourceTree = "<group>"; };
 		D54A93E91EC81CB50002874A /* EasyLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyLog.h; sourceTree = "<group>"; };
 		D54A93EA1EC81CB50002874A /* UIImage+EasyImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EasyImage.h"; sourceTree = "<group>"; };
 		D54A93EB1EC81CB50002874A /* UIImage+EasyImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+EasyImage.m"; sourceTree = "<group>"; };
@@ -127,6 +128,13 @@
 		D54A94DE1ECC59750002874A /* EasyImageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyImageProtocol.h; sourceTree = "<group>"; };
 		D54A94DF1ECC59750002874A /* UIImageView+EasyImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+EasyImage.h"; sourceTree = "<group>"; };
 		D54A94E01ECC59750002874A /* UIImageView+EasyImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+EasyImage.m"; sourceTree = "<group>"; };
+		D54A94E31ECD2F4C0002874A /* EasyCachePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyCachePolicy.h; sourceTree = "<group>"; };
+		D54A94E41ECD2F4C0002874A /* EasyCachePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyCachePolicy.m; sourceTree = "<group>"; };
+		D54A94E61ECD3EA00002874A /* EasyCachePolicyProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyCachePolicyProtocol.h; sourceTree = "<group>"; };
+		D54A94E71ECD3FD80002874A /* EasyURLCachePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyURLCachePolicy.h; sourceTree = "<group>"; };
+		D54A94E81ECD3FD80002874A /* EasyURLCachePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyURLCachePolicy.m; sourceTree = "<group>"; };
+		D54A94EA1ECD407B0002874A /* EasyUserCachePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyUserCachePolicy.h; sourceTree = "<group>"; };
+		D54A94EB1ECD407B0002874A /* EasyUserCachePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyUserCachePolicy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,7 +194,6 @@
 				D54A94021EC81CB50002874A /* EasyNetGCDQueue */,
 				D54A93531EC560B00002874A /* AppDelegate.h */,
 				D54A93541EC560B00002874A /* AppDelegate.m */,
-				D54A93A11EC586BB0002874A /* stream_loading.gif */,
 				D54A93561EC560B00002874A /* ViewController.h */,
 				D54A93571EC560B00002874A /* ViewController.m */,
 				D54A93591EC560B00002874A /* Main.storyboard */,
@@ -255,6 +262,13 @@
 				D54A93F91EC81CB50002874A /* EasyNonCache.m */,
 				D54A94D31ECC447A0002874A /* EasyURLCache.h */,
 				D54A94D41ECC447A0002874A /* EasyURLCache.m */,
+				D54A94E61ECD3EA00002874A /* EasyCachePolicyProtocol.h */,
+				D54A94E31ECD2F4C0002874A /* EasyCachePolicy.h */,
+				D54A94E41ECD2F4C0002874A /* EasyCachePolicy.m */,
+				D54A94E71ECD3FD80002874A /* EasyURLCachePolicy.h */,
+				D54A94E81ECD3FD80002874A /* EasyURLCachePolicy.m */,
+				D54A94EA1ECD407B0002874A /* EasyUserCachePolicy.h */,
+				D54A94EB1ECD407B0002874A /* EasyUserCachePolicy.m */,
 			);
 			name = EasyNetCache;
 			path = ../../EasyNetCache;
@@ -442,7 +456,6 @@
 				D54A93601EC560B00002874A /* LaunchScreen.storyboard in Resources */,
 				D54A935D1EC560B00002874A /* Assets.xcassets in Resources */,
 				D54A935B1EC560B00002874A /* Main.storyboard in Resources */,
-				D54A93A21EC586BB0002874A /* stream_loading.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,9 +480,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D54A94E51ECD2F4C0002874A /* EasyCachePolicy.m in Sources */,
 				D54A94311EC81E520002874A /* EasyProgress.m in Sources */,
 				D54A941E1EC81CB50002874A /* EasyConQueueManager.m in Sources */,
 				D54A93581EC560B00002874A /* ViewController.m in Sources */,
+				D54A94E91ECD3FD80002874A /* EasyURLCachePolicy.m in Sources */,
 				D54A94D81ECC4B0C0002874A /* EasyURLCacheDownload.m in Sources */,
 				D54A94301EC81E520002874A /* EasyBigFileDownload.m in Sources */,
 				D54A93551EC560B00002874A /* AppDelegate.m in Sources */,
@@ -482,6 +497,7 @@
 				D54A94CD1ECAE21D0002874A /* EasyFileManager.m in Sources */,
 				D54A94331EC81E520002874A /* EasyImageParas.m in Sources */,
 				D54A94151EC81CB50002874A /* UIImage+Header.m in Sources */,
+				D54A94EC1ECD407B0002874A /* EasyUserCachePolicy.m in Sources */,
 				D54A94141EC81CB50002874A /* UIImage+EasyImage.m in Sources */,
 				D54A94321EC81E520002874A /* EasyTinyFileDownload.m in Sources */,
 				D54A94191EC81CB50002874A /* EasyMemoryCache.m in Sources */,

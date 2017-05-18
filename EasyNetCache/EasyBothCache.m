@@ -7,6 +7,7 @@
 //
 
 #import "EasyBothCache.h"
+#import "EasyCachePolicy.h"
 
 @implementation EasyBothCache
 

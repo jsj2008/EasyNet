@@ -31,9 +31,6 @@
 
 
 @synthesize queueManager = _queueManager;
-
-@synthesize memoryCacheMode = _memoryCacheMode;
-@synthesize diskCacheMode = _diskCacheMode;
 @synthesize timeoutInterval = _timeoutInterval;
 
 -(void) setQueueManager:(id<EasyQueueProtocol>)queueManager{
@@ -42,7 +39,6 @@
 
 -(instancetype) init{
     if (self = [super init]) {
-        _memoryCacheMode = NO;
         _timeoutInterval = 60;
     }
     return self;
@@ -72,9 +68,23 @@
 
 - (void) easyDownload:(id<EasyImageProtocol>) para {
     __weak typeof(self) wself = self;
+    
     id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
     
     dispatch_block_t downloadBlock = ^{
+        
+        NSData * data = [paras.cacher dataForUrl:paras.url];
+        if (data) {
+            UIImage * image = [UIImage imageWithData:data];
+            [data easyDispatchOnMain:^{
+                paras.owner.image = image;
+                if (paras.successBlock) {
+                    paras.successBlock(paras);
+                }
+            }];
+            return ;
+        }
+        
         NSURL * url = [NSURL URLWithString:paras.url];
         NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
         [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
@@ -110,8 +120,8 @@
     id<EasyInnerImageProtocol> paras = (id<EasyInnerImageProtocol>) para;
     [paras.sessionTask cancel];
     EasyLog(paras);
-    if (paras.failedBlock) {
-        paras.failedBlock(paras, nil);
+    if (paras.cancelBlock) {
+        paras.cancelBlock(paras);
     }
 }
 

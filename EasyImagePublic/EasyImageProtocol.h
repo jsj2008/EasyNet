@@ -13,6 +13,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+
 @protocol EasyDownloadProtocol;
 @protocol EasyCacheProtocol;
 @protocol EasyImageOwnershipProtocol;
